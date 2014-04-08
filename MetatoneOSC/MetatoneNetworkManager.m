@@ -144,7 +144,7 @@
         self.loggingPort = firstPort;
         
         [self.delegate loggingServerFoundWithAddress:self.loggingIPAddress
-                                             andPort:self.loggingPort
+                                             andPort:(int) self.loggingPort
                                          andHostname:self.loggingHostname];
         [self sendMessageOnline];
         NSLog(@"NETWORK MANAGER: Resolved and Connected to an OSC Logger Service.");

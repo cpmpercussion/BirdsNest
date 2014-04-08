@@ -19,7 +19,6 @@
 		5639BB9618D15B0E00CD6759 /* F53OSCTimeTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB7E18D15B0E00CD6759 /* F53OSCTimeTag.m */; };
 		5639BB9718D15B0E00CD6759 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB8018D15B0E00CD6759 /* GCDAsyncSocket.m */; };
 		5639BB9818D15B0E00CD6759 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB8218D15B0E00CD6759 /* GCDAsyncUdpSocket.m */; };
-		5639BB9918D15B0E00CD6759 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5639BB8318D15B0E00CD6759 /* LICENSE.txt */; };
 		5639BB9A18D15B0E00CD6759 /* MetatoneNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB8518D15B0E00CD6759 /* MetatoneNetworkManager.m */; };
 		5639BB9B18D15B0E00CD6759 /* NSData+F53OSCBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB8718D15B0E00CD6759 /* NSData+F53OSCBlob.m */; };
 		5639BB9C18D15B0E00CD6759 /* NSDate+F53OSCTimeTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB8918D15B0E00CD6759 /* NSDate+F53OSCTimeTag.m */; };
@@ -34,7 +33,6 @@
 		565601E81711957D00E819A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 565601E61711957D00E819A3 /* InfoPlist.strings */; };
 		565601EA1711957D00E819A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 565601E91711957D00E819A3 /* main.m */; };
 		565601EE1711957D00E819A3 /* MetatoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565601ED1711957D00E819A3 /* MetatoneAppDelegate.m */; };
-		565601F71711957D00E819A3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565601F51711957D00E819A3 /* MainStoryboard_iPhone.storyboard */; };
 		565601FA1711957D00E819A3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565601F81711957D00E819A3 /* MainStoryboard_iPad.storyboard */; };
 		565601FD1711957D00E819A3 /* MetatoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565601FC1711957D00E819A3 /* MetatoneViewController.m */; };
 		565602051711957D00E819A3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565602041711957D00E819A3 /* SenTestingKit.framework */; };
@@ -224,7 +222,6 @@
 		56BEC52B18095F8500D2C201 /* g_vol.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3A918095F8400D2C201 /* g_vol.pd */; };
 		56BEC52C18095F8500D2C201 /* g_vol2-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3AA18095F8400D2C201 /* g_vol2-help.pd */; };
 		56BEC52D18095F8500D2C201 /* g_vol2.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3AB18095F8400D2C201 /* g_vol2.pd */; };
-		56BEC52E18095F8500D2C201 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3AC18095F8400D2C201 /* LICENSE.txt */; };
 		56BEC52F18095F8500D2C201 /* m.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3AD18095F8400D2C201 /* m.txt */; };
 		56BEC53018095F8500D2C201 /* m_accel_magnitude-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3AE18095F8400D2C201 /* m_accel_magnitude-help.pd */; };
 		56BEC53118095F8500D2C201 /* m_accel_magnitude.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC3AF18095F8400D2C201 /* m_accel_magnitude.pd */; };
@@ -493,7 +490,6 @@
 		5639BB8018D15B0E00CD6759 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		5639BB8118D15B0E00CD6759 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		5639BB8218D15B0E00CD6759 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
-		5639BB8318D15B0E00CD6759 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		5639BB8418D15B0E00CD6759 /* MetatoneNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneNetworkManager.h; sourceTree = "<group>"; };
 		5639BB8518D15B0E00CD6759 /* MetatoneNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneNetworkManager.m; sourceTree = "<group>"; };
 		5639BB8618D15B0E00CD6759 /* NSData+F53OSCBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+F53OSCBlob.h"; sourceTree = "<group>"; };
@@ -517,7 +513,6 @@
 		565601EB1711957D00E819A3 /* BirdsNest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BirdsNest-Prefix.pch"; sourceTree = "<group>"; };
 		565601EC1711957D00E819A3 /* MetatoneAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetatoneAppDelegate.h; sourceTree = "<group>"; };
 		565601ED1711957D00E819A3 /* MetatoneAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetatoneAppDelegate.m; sourceTree = "<group>"; };
-		565601F61711957D00E819A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		565601F91711957D00E819A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		565601FB1711957D00E819A3 /* MetatoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetatoneViewController.h; sourceTree = "<group>"; };
 		565601FC1711957D00E819A3 /* MetatoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetatoneViewController.m; sourceTree = "<group>"; };
@@ -710,7 +705,6 @@
 		56BEC3A918095F8400D2C201 /* g_vol.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = g_vol.pd; sourceTree = "<group>"; };
 		56BEC3AA18095F8400D2C201 /* g_vol2-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "g_vol2-help.pd"; sourceTree = "<group>"; };
 		56BEC3AB18095F8400D2C201 /* g_vol2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = g_vol2.pd; sourceTree = "<group>"; };
-		56BEC3AC18095F8400D2C201 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		56BEC3AD18095F8400D2C201 /* m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = m.txt; sourceTree = "<group>"; };
 		56BEC3AE18095F8400D2C201 /* m_accel_magnitude-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "m_accel_magnitude-help.pd"; sourceTree = "<group>"; };
 		56BEC3AF18095F8400D2C201 /* m_accel_magnitude.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = m_accel_magnitude.pd; sourceTree = "<group>"; };
@@ -997,7 +991,6 @@
 				5639BB8018D15B0E00CD6759 /* GCDAsyncSocket.m */,
 				5639BB8118D15B0E00CD6759 /* GCDAsyncUdpSocket.h */,
 				5639BB8218D15B0E00CD6759 /* GCDAsyncUdpSocket.m */,
-				5639BB8318D15B0E00CD6759 /* LICENSE.txt */,
 				5639BB8418D15B0E00CD6759 /* MetatoneNetworkManager.h */,
 				5639BB8518D15B0E00CD6759 /* MetatoneNetworkManager.m */,
 				5639BB8618D15B0E00CD6759 /* NSData+F53OSCBlob.h */,
@@ -1059,7 +1052,6 @@
 				562C1996171513D800C698FF /* Settings.bundle */,
 				565601EC1711957D00E819A3 /* MetatoneAppDelegate.h */,
 				565601ED1711957D00E819A3 /* MetatoneAppDelegate.m */,
-				565601F51711957D00E819A3 /* MainStoryboard_iPhone.storyboard */,
 				565601F81711957D00E819A3 /* MainStoryboard_iPad.storyboard */,
 				56D9F2F4171E592600B28B75 /* MetatoneTouchView.h */,
 				56D9F2F5171E592600B28B75 /* MetatoneTouchView.m */,
@@ -1323,7 +1315,6 @@
 				56BEC3A918095F8400D2C201 /* g_vol.pd */,
 				56BEC3AA18095F8400D2C201 /* g_vol2-help.pd */,
 				56BEC3AB18095F8400D2C201 /* g_vol2.pd */,
-				56BEC3AC18095F8400D2C201 /* LICENSE.txt */,
 				56BEC3AD18095F8400D2C201 /* m.txt */,
 				56BEC3AE18095F8400D2C201 /* m_accel_magnitude-help.pd */,
 				56BEC3AF18095F8400D2C201 /* m_accel_magnitude.pd */,
@@ -1579,7 +1570,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Metatone;
-				LastUpgradeCheck = 0460;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Charles Martin";
 				TargetAttributes = {
 					565601D91711957D00E819A3 = {
@@ -1676,7 +1668,6 @@
 				56BEC55918095F8500D2C201 /* m_thresholds.pd in Resources */,
 				56BEC48E18095F8500D2C201 /* forestfloor3.wav in Resources */,
 				56BEC58A18095F8500D2C201 /* s_looper.pd in Resources */,
-				5639BB9918D15B0E00CD6759 /* LICENSE.txt in Resources */,
 				56BEC5E418095F8500D2C201 /* u_robinpolymono-help.pd in Resources */,
 				56BEC5D418095F8500D2C201 /* u_lowpass-help.pd in Resources */,
 				56BEC59B18095F8500D2C201 /* s_playtable2.pd in Resources */,
@@ -1722,7 +1713,6 @@
 				56BEC5C718095F8500D2C201 /* u_listmap.pd in Resources */,
 				56BEC4F118095F8500D2C201 /* e_pan-help.pd in Resources */,
 				56BEC4EF18095F8500D2C201 /* e_noclickdel.pd in Resources */,
-				565601F71711957D00E819A3 /* MainStoryboard_iPhone.storyboard in Resources */,
 				56BEC52018095F8500D2C201 /* g_showtext-help.pd in Resources */,
 				56BEC48B18095F8500D2C201 /* drips2.wav in Resources */,
 				56BEC53318095F8500D2C201 /* m_accel_pitch.pd in Resources */,
@@ -1888,7 +1878,6 @@
 				56BEC55518095F8500D2C201 /* m_speedlimit.pd in Resources */,
 				56BEC4F818095F8500D2C201 /* e_pitchshift.pd in Resources */,
 				56BEC4C118095F8500D2C201 /* c_patternchange.pd in Resources */,
-				56BEC52E18095F8500D2C201 /* LICENSE.txt in Resources */,
 				56BEC4E918095F8500D2C201 /* e_graindelread.pd in Resources */,
 				56BEC4CB18095F8500D2C201 /* c_xfade.pd in Resources */,
 				56BEC54D18095F8500D2C201 /* m_ms2sm.pd in Resources */,
@@ -2115,14 +2104,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		565601F51711957D00E819A3 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				565601F61711957D00E819A3 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
 		565601F81711957D00E819A3 /* MainStoryboard_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2172,6 +2153,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "../pd-for-ios/libpd/**";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -2202,13 +2184,13 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "../pd-for-ios/libpd/**";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
 		565602161711957D00E819A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2220,6 +2202,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = BirdsNest;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2228,7 +2211,6 @@
 		565602171711957D00E819A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2242,6 +2224,7 @@
 				PRODUCT_NAME = BirdsNest;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "../pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};

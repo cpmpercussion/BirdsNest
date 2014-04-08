@@ -19,7 +19,11 @@
 @property (weak, nonatomic) IBOutlet UISwitch *fieldSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *cymbalSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *noteSwitch;
-
 @property (strong, nonatomic) NSString* lastGesture;
+@property (strong,nonatomic) MetatoneNetworkManager *networkManager;
+
+- (void)setupOscLogging;
+- (void)stopOscLogging;
+- (void)clearAllLoopedNotes;
 
 @end

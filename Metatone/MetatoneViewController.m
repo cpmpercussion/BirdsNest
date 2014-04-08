@@ -39,7 +39,6 @@
 }
 
 @property (strong,nonatomic) PdAudioController *audioController;
-@property (strong,nonatomic) MetatoneNetworkManager *networkManager;
 @property (strong, nonatomic) CMMotionManager* motionManager;
 @property (nonatomic) Boolean oscLogging;
 @property (nonatomic) Boolean accelLogging;
@@ -72,12 +71,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    // Randomise Sounds each time the app is back in focus
     [PdBase sendBangToReceiver:@"randomiseSounds"];
-    
-    // Setup Networking
-    //[[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"appeared.");
 }
 
@@ -112,17 +106,15 @@ void arraysize_setup();
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OSCLogging"]) {
         self.oscLogging = YES;
         [self setupOscLogging];
-        NSLog(@"Setup Logging.");
+        NSLog(@"OSC Logging Enabled.");
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"AccelerationLogging"]) {
             self.accelLogging = YES;
         }
     } else {
         [self.oscLoggingLabel setText:@""];
+        [self.oscLoggingSpinner setHidden:YES];
         self.oscLogging = NO;
-        // Turned off All Network functions when logging is switched off.
-#pragma mark - TODO make sure this works.
-        //[self setupOscLogging];
         NSLog(@"No OSC Logging.");
     }
     
@@ -370,8 +362,6 @@ void arraysize_setup();
 
 - (void)setupOscLogging
 {
-    // Search network for metatoneLogging sessions
-    // Initialise Network
     self.networkManager = [[MetatoneNetworkManager alloc] initWithDelegate:self shouldOscLog:self.oscLogging];
     
     if (!self.networkManager) {
@@ -379,6 +369,12 @@ void arraysize_setup();
         [self.oscLoggingLabel setText:@"OSC Logging: Not Connected"];
         NSLog(@"OSC Logging: Not Connected");
     }
+}
+
+-(void)stopOscLogging
+{
+    // Stop searching for metatoneLogging sessions and metatone sessions
+    [self.networkManager stopSearches];
 }
 
 - (void) searchingForLoggingServer {
