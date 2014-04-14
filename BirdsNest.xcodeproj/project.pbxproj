@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5616A59818FC132D0092983C /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616A59718FC132D0092983C /* SRWebSocket.m */; };
 		561CE01717882267009ECCFA /* ScaleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 561CE01617882267009ECCFA /* ScaleMaker.m */; };
 		562C1997171513D800C698FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 562C1996171513D800C698FF /* Settings.bundle */; };
 		5639BB8F18D15B0E00CD6759 /* F53OSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB6E18D15B0E00CD6759 /* F53OSCBundle.m */; };
@@ -464,6 +465,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5616A59518FC132D0092983C /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		5616A59618FC132D0092983C /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		5616A59718FC132D0092983C /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		561CE01517882267009ECCFA /* ScaleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleMaker.h; sourceTree = "<group>"; };
 		561CE01617882267009ECCFA /* ScaleMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleMaker.m; sourceTree = "<group>"; };
 		562C1996171513D800C698FF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -955,6 +959,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5616A59418FC132D0092983C /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				5616A59518FC132D0092983C /* SocketRocket-Prefix.pch */,
+				5616A59618FC132D0092983C /* SRWebSocket.h */,
+				5616A59718FC132D0092983C /* SRWebSocket.m */,
+			);
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
 		562C1985171508A600C698FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1009,6 +1023,7 @@
 		565601D11711957D00E819A3 = {
 			isa = PBXGroup;
 			children = (
+				5616A59418FC132D0092983C /* SocketRocket */,
 				5639BB6B18D15B0E00CD6759 /* MetatoneOSC */,
 				56BEC607180967C500D2C201 /* Images.xcassets */,
 				56BEC2F918095F8300D2C201 /* birdsnestinstrument */,
@@ -2072,6 +2087,7 @@
 				56D9F2ED171E2EF100B28B75 /* LoopingNote.m in Sources */,
 				5639BB8F18D15B0E00CD6759 /* F53OSCBundle.m in Sources */,
 				5639BB9218D15B0E00CD6759 /* F53OSCPacket.m in Sources */,
+				5616A59818FC132D0092983C /* SRWebSocket.m in Sources */,
 				561CE01717882267009ECCFA /* ScaleMaker.m in Sources */,
 				5639BB9418D15B0E00CD6759 /* F53OSCServer.m in Sources */,
 			);
