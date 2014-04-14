@@ -11,6 +11,7 @@
 #define DEFAULT_PORT 51200
 #define DEFAULT_ADDRESS @"10.0.1.2"
 #define METATONE_SERVICE_TYPE @"_metatoneapp._udp."
+#define METACLASSIFIER_SERVICE_TYPE @"_metatoneclassifier._http._tcp"
 #define OSCLOGGER_SERVICE_TYPE @"_osclogger._udp."
 
 @implementation MetatoneNetworkManager
@@ -117,6 +118,10 @@
     NSString* firstAddress;
     int firstPort;
     
+    NSLog(@"NETWORK MANAGER: Port: %i",[sender port]);
+    NSLog(@"NETWORK MANAGER: Hostname: %@",[sender hostName]);
+    
+    // Parse "addresses" as IP string and port.
     for (NSData* data in [sender addresses]) {
         char addressBuffer[100];
         struct sockaddr_in* socketAddress = (struct sockaddr_in*) [data bytes];
@@ -127,10 +132,7 @@
                                                sizeof(addressBuffer));
             int port = ntohs(socketAddress->sin_port);
             if (addressStr && port) {
-                NSLog(@"NETWORK MANAGER: Resolved service of type %@ at %s:%d",
-                      [sender type],
-                      addressStr,
-                      port);
+                NSLog(@"NETWORK MANAGER: Resolved service of type %@ at %s:%d",[sender type],addressStr,port);
                 firstAddress = [NSString stringWithFormat:@"%s",addressStr];
                 firstPort = port;
                 break;

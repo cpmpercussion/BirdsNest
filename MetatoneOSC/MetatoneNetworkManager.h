@@ -31,7 +31,6 @@
 @property (strong,nonatomic) F53OSCClient *oscClient;
 @property (strong,nonatomic) F53OSCServer *oscServer;
 
-//@property (strong, nonatomic) OSCConnection *connection;
 @property (strong, nonatomic) NSString *loggingIPAddress;
 @property (nonatomic) NSInteger loggingPort;
 @property (strong, nonatomic) NSString *loggingHostname;
@@ -46,7 +45,6 @@
 @property (strong, nonatomic) NSMutableArray *remoteMetatoneNetServices;
 @property (nonatomic) bool oscLogging;
 
-
 @property (weak,nonatomic) id<MetatoneNetworkManagerDelegate> delegate;
 
 
@@ -57,7 +55,6 @@
 - (MetatoneNetworkManager *) initWithDelegate: (id<MetatoneNetworkManagerDelegate>) delegate  shouldOscLog: (bool) osclogging;
 // Stops all searches and deletes records of remote services and addresses.
 - (void)stopSearches;
-
 - (void)sendMessageWithAccelerationX:(double) X Y:(double) Y Z:(double) Z;
 - (void)sendMessageWithTouch:(CGPoint) point Velocity:(CGFloat) vel;
 - (void)sendMessageTouchEnded;
