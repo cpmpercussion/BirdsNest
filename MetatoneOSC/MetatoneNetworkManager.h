@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "F53OSC.h"
+#import "SRWebSocket.h"
 
 // IP Address method
 #import <ifaddrs.h>
@@ -26,10 +27,11 @@
 
 @end
 
-@interface MetatoneNetworkManager : NSObject <F53OSCPacketDestination,F53OSCClientDelegate, NSNetServiceDelegate, NSNetServiceBrowserDelegate>
+@interface MetatoneNetworkManager : NSObject <SRWebSocketDelegate,F53OSCPacketDestination,F53OSCClientDelegate, NSNetServiceDelegate, NSNetServiceBrowserDelegate>
 
 @property (strong,nonatomic) F53OSCClient *oscClient;
 @property (strong,nonatomic) F53OSCServer *oscServer;
+@property (strong,nonatomic) SRWebSocket *classifierWebSocket;
 
 @property (strong, nonatomic) NSString *loggingIPAddress;
 @property (nonatomic) NSInteger loggingPort;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5616A59818FC132D0092983C /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616A59718FC132D0092983C /* SRWebSocket.m */; };
+		5616A59C18FD1F080092983C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5616A59B18FD1F080092983C /* libicucore.dylib */; };
 		561CE01717882267009ECCFA /* ScaleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 561CE01617882267009ECCFA /* ScaleMaker.m */; };
 		562C1997171513D800C698FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 562C1996171513D800C698FF /* Settings.bundle */; };
 		5639BB8F18D15B0E00CD6759 /* F53OSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB6E18D15B0E00CD6759 /* F53OSCBundle.m */; };
@@ -468,6 +469,7 @@
 		5616A59518FC132D0092983C /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
 		5616A59618FC132D0092983C /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		5616A59718FC132D0092983C /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		5616A59B18FD1F080092983C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		561CE01517882267009ECCFA /* ScaleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleMaker.h; sourceTree = "<group>"; };
 		561CE01617882267009ECCFA /* ScaleMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleMaker.m; sourceTree = "<group>"; };
 		562C1996171513D800C698FF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -933,6 +935,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5616A59C18FD1F080092983C /* libicucore.dylib in Frameworks */,
 				563D136318A46363009BF1A1 /* Security.framework in Frameworks */,
 				563D136118A460C1009BF1A1 /* CFNetwork.framework in Frameworks */,
 				56BD3FBA1712FA5E004FBB65 /* libpd-ios.a in Frameworks */,
@@ -1047,6 +1050,7 @@
 		565601DC1711957D00E819A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5616A59B18FD1F080092983C /* libicucore.dylib */,
 				563D136218A46363009BF1A1 /* Security.framework */,
 				563D136018A460C1009BF1A1 /* CFNetwork.framework */,
 				56D9F2F7171E79A200B28B75 /* QuartzCore.framework */,

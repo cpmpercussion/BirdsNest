@@ -10,9 +10,12 @@
 #import "MetatoneNetworkManager.h"
 #define DEFAULT_PORT 51200
 #define DEFAULT_ADDRESS @"10.0.1.2"
+#define METATONE_CLASSIFIER_HOSTNAME @"determinist.local."
+#define METATONE_CLASSIFIER_PORT @"8080"
 #define METATONE_SERVICE_TYPE @"_metatoneapp._udp."
 #define METACLASSIFIER_SERVICE_TYPE @"_metatoneclassifier._http._tcp"
 #define OSCLOGGER_SERVICE_TYPE @"_osclogger._udp."
+#define USE_WEBSOCKET_CLASSIFIER @YES
 
 @implementation MetatoneNetworkManager
 // Designated Initialiser
@@ -39,6 +42,9 @@
     [self.oscServer setDelegate:self];
     [self.oscServer setPort:DEFAULT_PORT];
     [self.oscServer startListening];
+    
+    // Connect WebSocketClassifier
+    if (USE_WEBSOCKET_CLASSIFIER) [self connectClassifierWebSocket];
     
     // register with Bonjour
     self.metatoneNetService = [[NSNetService alloc]
@@ -77,11 +83,11 @@
     [self.oscLoggerServiceBrowser stop];
     [self.remoteMetatoneIPAddresses removeAllObjects];
     [self.remoteMetatoneNetServices removeAllObjects];
-    //[self.connection disconnect];
     [self.oscClient disconnect];
+    [self closeClassifierWebSocket];
 }
 
-#pragma mark Instantiation
+#pragma mark Lazy Instantiations
 -(NSMutableArray *) remoteMetatoneNetServices {
     if (!_remoteMetatoneNetServices) _remoteMetatoneNetServices = [[NSMutableArray alloc] init];
     return _remoteMetatoneNetServices;
@@ -92,7 +98,42 @@
     return _remoteMetatoneIPAddresses;
 }
 
-# pragma mark NetServiceBrowserDelegate Methods
+#pragma mark WebSocket Life Cycle
+
+-(void)connectClassifierWebSocket {
+    self.classifierWebSocket.delegate = nil;
+    [self.classifierWebSocket close];
+    NSString* classifierUrl = [NSString stringWithFormat:@"ws://%@:%@/classifier",METATONE_CLASSIFIER_HOSTNAME,METATONE_CLASSIFIER_PORT];
+    self.classifierWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:classifierUrl]]];
+    [self.classifierWebSocket setDelegate:self];
+    NSLog(@"NETWORK MANAGER: Opening Classifier WebSocket.");
+    [self.classifierWebSocket open];
+}
+
+-(void)closeClassifierWebSocket {
+    [self.classifierWebSocket close];
+}
+
+-(void)webSocketDidOpen:(SRWebSocket *)webSocket {
+    NSLog(@"NETWORK MANAGER: Classifier WebSocket Opened.");
+}
+
+-(void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
+    NSLog(@"NETWORK MANAGER: Classifier WebSocket Closed.");
+    self.classifierWebSocket = nil;
+}
+
+-(void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
+    NSLog(@"NETWORK MANAGER: Classifier WebSocket Failed.");
+    self.classifierWebSocket = nil;
+}
+
+-(void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
+//    
+    
+}
+
+# pragma mark NetService Browser Life Cycle
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict {
     NSLog(@"NETWORK MANAGER: ERROR: Did not search for OSC Logger");
