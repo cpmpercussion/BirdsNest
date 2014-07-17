@@ -130,8 +130,7 @@
 }
 
 -(void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-//    
-    
+//
 }
 
 -(void)sendToWebClassifier:(F53OSCMessage *)message {
@@ -139,7 +138,7 @@
         [self.classifierWebSocket send:[message description]];
         NSLog(@"NETWORK MANAGER: Message sent to WebSocket.");
     } else {
-        NSLog(@"NETWORK MANAGER: Can't send to WebSocket - Closed.");
+//        NSLog(@"NETWORK MANAGER: Can't send to WebSocket - Closed.");
     }
 }
 

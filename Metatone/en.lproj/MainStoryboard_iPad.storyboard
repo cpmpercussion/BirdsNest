@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -48,10 +48,10 @@
                                     <constraint firstItem="XM1-9v-N8I" firstAttribute="leading" secondItem="aMO-F3-pwJ" secondAttribute="leading" constant="139" id="guW-Oy-4XX"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="OSC Logging: Connected to address 192.168.1.255" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="254" translatesAutoresizingMaskIntoConstraints="NO" id="Y7M-h0-H85">
-                                <rect key="frame" x="385" y="670" width="254" height="78"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="OSC Logging: Connected to address 192.168.1.255" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="431" translatesAutoresizingMaskIntoConstraints="NO" id="Y7M-h0-H85">
+                                <rect key="frame" x="296" y="670" width="431" height="78"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="254" id="Vxp-JX-umh"/>
+                                    <constraint firstAttribute="width" constant="431" id="Vxp-JX-umh"/>
                                     <constraint firstAttribute="height" constant="78" id="w6I-b5-01I"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,10 +87,6 @@
                                     <action selector="reset:" destination="2" eventType="touchUpInside" id="Q6T-9a-5sZ"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OeO-8j-UzO" userLabel="OSC Spinner">
-                                <rect key="frame" x="984" y="20" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -120,7 +116,6 @@
                         <outlet property="fieldSwitch" destination="1ZF-I0-Rwa" id="YyC-hG-OfV"/>
                         <outlet property="loopSwitch" destination="Iga-Xr-JQ2" id="61u-va-Y5k"/>
                         <outlet property="oscLoggingLabel" destination="Y7M-h0-H85" id="bvZ-SB-aZw"/>
-                        <outlet property="oscLoggingSpinner" destination="OeO-8j-UzO" id="dBV-OK-NbF"/>
                         <outlet property="panGestureRecognizer" destination="ZMX-QJ-ySn" id="TqN-qB-90K"/>
                         <outlet property="touchView" destination="aMO-F3-pwJ" id="yOb-5l-syj"/>
                     </connections>
