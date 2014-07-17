@@ -53,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (nonatomic) int tapMode;
 @property (nonatomic) int scaleMode;
+@property (strong, nonatomic) NSDate* timeOfLastNewIdea;
 @end
 
 @implementation MetatoneViewController
@@ -138,8 +139,14 @@ void arraysize_setup();
     self.tapMode = 1;
     self.scaleMode = 0;
     [self.scaleLabel setText:@"F Mixo"];
-    
-    // Setup background image
+    self.sameGestureCount = 0;
+    [self changeBackgroundImage];
+    [self reset:Nil];
+    self.timeOfLastNewIdea = [NSDate date];
+}
+
+
+-(void)changeBackgroundImage {
     int choice = arc4random_uniform(3);
     if (choice == 0) {
         [self.backgroundImage setImage:[UIImage imageNamed:@"forest.jpg"]];
@@ -148,8 +155,6 @@ void arraysize_setup();
     } else if (choice == 2) {
         [self.backgroundImage setImage:[UIImage imageNamed:@"treetops.jpg"]];
     }
-    
-    [self reset:Nil];
 }
 
 #pragma mark - Note Methods
@@ -199,21 +204,17 @@ void arraysize_setup();
 {
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.view];
-    CGFloat distance = [self calculateDistanceFromCenter:touchPoint] /600;
-    
-    // Measure Acceleration
-    CMDeviceMotion *motion = self.motionManager.deviceMotion;
-    int velocity = (int) (ABS(motion.userAcceleration.z * 3000) + 5) % 128;
 
-    // Print touch Area.
-    //int area = (int) pow(touch._pathMajorRadius, 2)/4;
-    //area = area + 10;
-    //  NSLog([NSString stringWithFormat:@"Z Accel: %d, Area: %d", velocity,area]);
+    // Velocity.
+    float radius = (touch._pathMajorRadius - 5.0)/16;
+    int velocity = floorf(15 + (radius * 115));
+    if (velocity > 127) velocity = 127;
+    if (velocity < 0) velocity = 0;
     
     // Send to Pd - receiver
-    if (self.tapMode == TAP_MODE_FIELDS || self.tapMode == TAP_MODE_BOTH) {
+    if (self.tapMode == TAP_MODE_FIELDS || self.tapMode == TAP_MODE_FIELDS) {
         [PdBase sendBangToReceiver:@"touch" ]; // makes a small sound
-        [PdBase sendFloat:distance toReceiver:@"tapdistance" ];
+        [PdBase sendFloat:velocity/100.0 toReceiver:@"tapdistance"];
     }
     
     // Send to Pd as a midi note.
@@ -232,9 +233,7 @@ void arraysize_setup();
 -(void)sendMidiNoteFromPoint:(CGPoint) point withVelocity:(int) vel
 {
     CGFloat distance = [self calculateDistanceFromCenter:point]/600;
-    // Testing sending a midi message as well.
-    int velocity = ((int) 25 + 100 * (point.y / 800));
-    velocity = (int) (velocity * 0.2) + (vel * 0.8); // include the tap acceleration measurement.
+    int velocity = vel;
     int note = (int) (distance * 35);
     
     if (self.scaleMode == SCALE_MODE_F_MIXO) {
@@ -300,12 +299,10 @@ void arraysize_setup();
 }
 
 // Reset Sounds Button
-//- (IBAction)reset:(id)sender {
 - (IBAction)reset:(id)sender {
     if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"resetButton" On:YES];
     [PdBase sendBangToReceiver:@"randomiseSounds"];
     self.tapMode = 1 + ((self.tapMode + 1) % 2);
-    //NSLog([NSString stringWithFormat:@"TapMode: %i",self.tapMode]);
 
     [self.networkManager sendMetatoneMessage:METATONE_RESET_MESSAGE withState:@"reset"];
     [self.networkManager sendMetatoneMessage:METATONE_TAPMODE_MESSAGE
@@ -317,14 +314,6 @@ void arraysize_setup();
 // Scale Button
 - (IBAction)changeScale:(UIButton *)sender {
     [self randomiseScale];
-//    // increment scale mode
-//    self.scaleMode = (self.scaleMode + 1) % 3;
-//    // update scale label
-//    if (self.scaleMode == SCALE_MODE_F_MIXO) [self.scaleLabel setText:@"F Mixo"];
-//    if (self.scaleMode == SCALE_MODE_C_LYDSHARP) [self.scaleLabel setText:@"C Lyd Sharp 5"];
-//    if (self.scaleMode == SCALE_MODE_FSHARP_LYD) [self.scaleLabel setText:@"F# Lydian"];
-//    
-//    [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
 }
 
 // Scale Method
@@ -364,7 +353,7 @@ void arraysize_setup();
     
     if (!self.networkManager) {
         self.oscLogging = NO;
-        [self.oscLoggingLabel setText:@"OSC Logging: Not Connected"];
+        [self.oscLoggingLabel setText:@"OSC Logging: Not Connected. 😓"];
         NSLog(@"OSC Logging: Not Connected");
     }
 }
@@ -386,14 +375,14 @@ void arraysize_setup();
 -(void) loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
     // Stop the spinner - update info in the field
     [self.oscLoggingSpinner stopAnimating];
-    [self.oscLoggingLabel setText:[NSString stringWithFormat:@"Logging to %@\n %@:%d", hostname, address,port]];
+    [self.oscLoggingLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
 }
 
 -(void) stoppedSearchingForLoggingServer {
     if (self.oscLogging) {
         // stop the spinner - write "Logging Server Not Found" in the field.
         [self.oscLoggingSpinner stopAnimating];
-        [self.oscLoggingLabel setText: @"Logging Server Not Found!"];
+        [self.oscLoggingLabel setText: @"Logging Server Not Found! 😰"];
     }
 }
 
@@ -425,17 +414,25 @@ void arraysize_setup();
 }
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {
-    if ([class isEqualToString:self.lastGesture] && arc4random_uniform(100)>85) {
+    if ([class isEqualToString:self.lastGesture]) {
+        self.sameGestureCount++;
+    } else {
+        self.sameGestureCount = 0;
+    }
+    
+    if (self.sameGestureCount > 3 && arc4random_uniform(100)>85) {
+        self.sameGestureCount = 0;
         if (arc4random_uniform(10)>5) {
             [self.loopSwitch setOn:!self.loopSwitch.on animated:YES];
             [self loopingOn:self.loopSwitch];
+            NSLog(@"Loops Changed by Classifier");
         } else {
             [self.fieldSwitch setOn:!self.fieldSwitch.on animated:YES];
             [self fieldsOn:self.fieldSwitch];
+            NSLog(@"Fields Changed by Classifier");
         }
     }
     self.lastGesture = class;
-    NSLog(@"Gesture: %@",class);
 }
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber *)ratio {
@@ -443,12 +440,20 @@ void arraysize_setup();
 }
 
 -(void)didReceiveEnsembleEvent:(NSString *)event forDevice:(NSString *)device withMeasure:(NSNumber *)measure {
-    if (arc4random_uniform(100)>75) {
+    if ([self.timeOfLastNewIdea timeIntervalSinceNow] < -10.0) {
         [self reset:nil];
-        NSLog(@"Received Ensemble Event and Changed!");
+        [self changeBackgroundImage];
+        NSLog(@"Ensemble Event Received: Reset.");
+        self.timeOfLastNewIdea = [NSDate date];
     } else {
-        NSLog(@"Received Ensemble Event and did nothing.");
+        NSLog(@"Ensemble Event Received: Too soon after last event!");
     }
+    
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 @end

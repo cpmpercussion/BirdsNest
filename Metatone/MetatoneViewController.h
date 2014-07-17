@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *cymbalSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *noteSwitch;
 @property (strong, nonatomic) NSString* lastGesture;
+@property (nonatomic) int sameGestureCount;
 @property (strong,nonatomic) MetatoneNetworkManager *networkManager;
 
 - (void)setupOscLogging;
