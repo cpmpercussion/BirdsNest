@@ -29,9 +29,9 @@
 
 #define LOOPED_NOTE_LIMIT 200
 
-//@interface UITouch (Private)
-//-(float)_pathMajorRadius;
-//@end
+@interface UITouch (Private)
+-(float)_pathMajorRadius;
+@end
 
 
 @interface MetatoneViewController () {
@@ -72,9 +72,7 @@
 {
     [super viewDidAppear:animated];
     [PdBase sendBangToReceiver:@"randomiseSounds"];
-    NSLog(@"appeared.");
 }
-
 
 void arraysize_setup();
 
