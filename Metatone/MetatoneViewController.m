@@ -376,6 +376,8 @@ void arraysize_setup();
     // Stop the spinner - update info in the field
     [self.oscLoggingSpinner stopAnimating];
     [self.oscLoggingLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
+    [self.fieldSwitch setHidden:YES]; // get rid of fieldswitch when connected to network.
+    [self.autoplayLabel setHidden:YES];
 }
 
 -(void) stoppedSearchingForLoggingServer {
@@ -437,6 +439,7 @@ void arraysize_setup();
 }
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber *)ratio {
+    // Maybe do something with ensemble state?
     
 }
 

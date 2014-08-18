@@ -112,9 +112,11 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="autoplayLabel" destination="XM1-9v-N8I" id="nW4-2m-sGo"/>
                         <outlet property="backgroundImage" destination="qj2-vR-65x" id="whD-vE-u7a"/>
                         <outlet property="fieldSwitch" destination="1ZF-I0-Rwa" id="YyC-hG-OfV"/>
                         <outlet property="loopSwitch" destination="Iga-Xr-JQ2" id="61u-va-Y5k"/>
+                        <outlet property="loopingLabel" destination="G7a-CS-fkx" id="F3x-dG-yLn"/>
                         <outlet property="oscLoggingLabel" destination="Y7M-h0-H85" id="bvZ-SB-aZw"/>
                         <outlet property="panGestureRecognizer" destination="ZMX-QJ-ySn" id="TqN-qB-90K"/>
                         <outlet property="touchView" destination="aMO-F3-pwJ" id="yOb-5l-syj"/>

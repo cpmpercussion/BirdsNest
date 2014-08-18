@@ -23,6 +23,9 @@
 @property (nonatomic) int sameGestureCount;
 @property (strong,nonatomic) MetatoneNetworkManager *networkManager;
 
+@property (weak, nonatomic) IBOutlet UILabel *autoplayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loopingLabel;
+
 - (void)setupOscLogging;
 - (void)stopOscLogging;
 - (void)clearAllLoopedNotes;
