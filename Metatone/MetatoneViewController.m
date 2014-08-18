@@ -414,25 +414,26 @@ void arraysize_setup();
 }
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {
-    if ([class isEqualToString:self.lastGesture]) {
-        self.sameGestureCount++;
-    } else {
-        self.sameGestureCount = 0;
-    }
-    
-    if (self.sameGestureCount > 3 && arc4random_uniform(100)>85) {
-        self.sameGestureCount = 0;
-        if (arc4random_uniform(10)>5) {
-            [self.loopSwitch setOn:!self.loopSwitch.on animated:YES];
-            [self loopingOn:self.loopSwitch];
-            NSLog(@"Loops Changed by Classifier");
-        } else {
-            [self.fieldSwitch setOn:!self.fieldSwitch.on animated:YES];
-            [self fieldsOn:self.fieldSwitch];
-            NSLog(@"Fields Changed by Classifier");
-        }
-    }
-    self.lastGesture = class;
+// 20140818 - Stop using gestures to mess with Field and Loops
+    //    if ([class isEqualToString:self.lastGesture]) {
+//        self.sameGestureCount++;
+//    } else {
+//        self.sameGestureCount = 0;
+//    }
+//    
+//    if (self.sameGestureCount > 3 && arc4random_uniform(100)>85) {
+//        self.sameGestureCount = 0;
+//        if (arc4random_uniform(10)>5) {
+//            [self.loopSwitch setOn:!self.loopSwitch.on animated:YES];
+//            [self loopingOn:self.loopSwitch];
+//            NSLog(@"Loops Changed by Classifier");
+//        } else {
+//            [self.fieldSwitch setOn:!self.fieldSwitch.on animated:YES];
+//            [self fieldsOn:self.fieldSwitch];
+//            NSLog(@"Fields Changed by Classifier");
+//        }
+//    }
+//    self.lastGesture = class;
 }
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber *)ratio {
