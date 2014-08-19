@@ -43,6 +43,8 @@
 		5656020F1711957D00E819A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5656020D1711957D00E819A3 /* InfoPlist.strings */; };
 		565602121711957D00E819A3 /* MetatoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 565602111711957D00E819A3 /* MetatoneTests.m */; };
 		566FCB63171680CB00E4E83B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 566FCB62171680CB00E4E83B /* CoreMotion.framework */; };
+		567421A019A2FE7600777232 /* hillpath.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5674219F19A2FE7600777232 /* hillpath.jpg */; };
+		567421A419A31B7E00777232 /* lowblock.wav in Resources */ = {isa = PBXBuildFile; fileRef = 567421A319A31B7E00777232 /* lowblock.wav */; };
 		568B4E7C18341DA5005356A7 /* doodoodoodoo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7818341DA5005356A7 /* doodoodoodoo.wav */; };
 		568B4E7D18341DA5005356A7 /* whirpwhirp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7918341DA5005356A7 /* whirpwhirp.wav */; };
 		568B4E7E18341DA5005356A7 /* xylo-C.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7A18341DA5005356A7 /* xylo-C.wav */; };
@@ -51,9 +53,8 @@
 		56BD3FBE1712FAA3004FBB65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FBD1712FAA3004FBB65 /* AudioToolbox.framework */; };
 		56BD3FC01712FAAA004FBB65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FBF1712FAAA004FBB65 /* AVFoundation.framework */; };
 		56BEC48018095F8500D2C201 /* arraysize.c in Sources */ = {isa = PBXBuildFile; fileRef = 56BEC2FA18095F8300D2C201 /* arraysize.c */; settings = {COMPILER_FLAGS = "-DPD -fno-objc-arc"; }; };
-		56BEC48118095F8500D2C201 /* bellsynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC2FB18095F8300D2C201 /* bellsynth.pd */; };
 		56BEC48218095F8500D2C201 /* birdsnestsounds.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC2FC18095F8300D2C201 /* birdsnestsounds.pd */; };
-		56BEC48318095F8500D2C201 /* bowlsynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC2FD18095F8300D2C201 /* bowlsynth.pd */; };
+		56BEC48318095F8500D2C201 /* percsampler.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC2FD18095F8300D2C201 /* percsampler.pd */; };
 		56BEC48418095F8500D2C201 /* ainsliebirds1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC2FF18095F8300D2C201 /* ainsliebirds1.wav */; };
 		56BEC48518095F8500D2C201 /* ainsliebirds2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC30018095F8300D2C201 /* ainsliebirds2.wav */; };
 		56BEC48618095F8500D2C201 /* ainsliebirds3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC30118095F8300D2C201 /* ainsliebirds3.wav */; };
@@ -529,6 +530,8 @@
 		565602101711957D00E819A3 /* MetatoneTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetatoneTests.h; sourceTree = "<group>"; };
 		565602111711957D00E819A3 /* MetatoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetatoneTests.m; sourceTree = "<group>"; };
 		566FCB62171680CB00E4E83B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		5674219F19A2FE7600777232 /* hillpath.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hillpath.jpg; sourceTree = "<group>"; };
+		567421A319A31B7E00777232 /* lowblock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lowblock.wav; sourceTree = "<group>"; };
 		568B4E7818341DA5005356A7 /* doodoodoodoo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doodoodoodoo.wav; sourceTree = "<group>"; };
 		568B4E7918341DA5005356A7 /* whirpwhirp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whirpwhirp.wav; sourceTree = "<group>"; };
 		568B4E7A18341DA5005356A7 /* xylo-C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "xylo-C.wav"; sourceTree = "<group>"; };
@@ -537,9 +540,8 @@
 		56BD3FBD1712FAA3004FBB65 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		56BD3FBF1712FAAA004FBB65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56BEC2FA18095F8300D2C201 /* arraysize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arraysize.c; sourceTree = "<group>"; };
-		56BEC2FB18095F8300D2C201 /* bellsynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bellsynth.pd; sourceTree = "<group>"; };
 		56BEC2FC18095F8300D2C201 /* birdsnestsounds.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdsnestsounds.pd; sourceTree = "<group>"; };
-		56BEC2FD18095F8300D2C201 /* bowlsynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bowlsynth.pd; sourceTree = "<group>"; };
+		56BEC2FD18095F8300D2C201 /* percsampler.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = percsampler.pd; sourceTree = "<group>"; };
 		56BEC2FF18095F8300D2C201 /* ainsliebirds1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ainsliebirds1.wav; sourceTree = "<group>"; };
 		56BEC30018095F8300D2C201 /* ainsliebirds2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ainsliebirds2.wav; sourceTree = "<group>"; };
 		56BEC30118095F8300D2C201 /* ainsliebirds3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ainsliebirds3.wav; sourceTree = "<group>"; };
@@ -975,6 +977,7 @@
 		562C1985171508A600C698FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5674219F19A2FE7600777232 /* hillpath.jpg */,
 				56BEC6011809640200D2C201 /* forest.jpg */,
 				56BEC6021809640200D2C201 /* path.jpg */,
 				56BEC6031809640200D2C201 /* treetops.jpg */,
@@ -1129,9 +1132,8 @@
 			isa = PBXGroup;
 			children = (
 				56BEC2FA18095F8300D2C201 /* arraysize.c */,
-				56BEC2FB18095F8300D2C201 /* bellsynth.pd */,
 				56BEC2FC18095F8300D2C201 /* birdsnestsounds.pd */,
-				56BEC2FD18095F8300D2C201 /* bowlsynth.pd */,
+				56BEC2FD18095F8300D2C201 /* percsampler.pd */,
 				56BEC2FE18095F8300D2C201 /* fieldrecordings */,
 				56BEC30C18095F8300D2C201 /* fts_to_pd.h */,
 				56BEC30D18095F8300D2C201 /* m_lydian.pd */,
@@ -1169,6 +1171,7 @@
 		56BEC31118095F8300D2C201 /* percsamples */ = {
 			isa = PBXGroup;
 			children = (
+				567421A319A31B7E00777232 /* lowblock.wav */,
 				568B4E7818341DA5005356A7 /* doodoodoodoo.wav */,
 				568B4E7918341DA5005356A7 /* whirpwhirp.wav */,
 				568B4E7A18341DA5005356A7 /* xylo-C.wav */,
@@ -1674,7 +1677,7 @@
 				56BEC49D18095F8500D2C201 /* c_adsr.pd in Resources */,
 				56BEC5AC18095F8500D2C201 /* u_bandpass2q.pd in Resources */,
 				56BEC5CD18095F8500D2C201 /* u_listreduce.pd in Resources */,
-				56BEC48318095F8500D2C201 /* bowlsynth.pd in Resources */,
+				56BEC48318095F8500D2C201 /* percsampler.pd in Resources */,
 				56BEC4BB18095F8500D2C201 /* c_multimetro.pd in Resources */,
 				56BEC53B18095F8500D2C201 /* m_beat2ms.pd in Resources */,
 				56BEC4A818095F8500D2C201 /* c_ead-help.pd in Resources */,
@@ -1886,7 +1889,6 @@
 				56BEC50618095F8500D2C201 /* e_sdelay.pd in Resources */,
 				56BEC58218095F8500D2C201 /* s_fplaytable-help.pd in Resources */,
 				56BEC59218095F8500D2C201 /* s_osc-help.pd in Resources */,
-				56BEC48118095F8500D2C201 /* bellsynth.pd in Resources */,
 				56BEC4C718095F8500D2C201 /* c_tobus.pd in Resources */,
 				56BEC4A718095F8500D2C201 /* c_drunk.pd in Resources */,
 				56BEC5EE18095F8500D2C201 /* u_show-help.pd in Resources */,
@@ -1973,6 +1975,7 @@
 				56BEC4A518095F8500D2C201 /* c_cpfade.pd in Resources */,
 				56BEC56118095F8500D2C201 /* r_#gyro-help.pd in Resources */,
 				56BEC57718095F8500D2C201 /* s_cwc.pd in Resources */,
+				567421A019A2FE7600777232 /* hillpath.jpg in Resources */,
 				56BEC4AF18095F8500D2C201 /* c_lfo.pd in Resources */,
 				56BEC5E118095F8500D2C201 /* u_record.pd in Resources */,
 				56BEC49118095F8500D2C201 /* m_lydian.pd in Resources */,
@@ -1999,6 +2002,7 @@
 				56BEC60A18096AD000D2C201 /* crotale-C.wav in Resources */,
 				56BEC5F918095F8500D2C201 /* u_wrandom-help.pd in Resources */,
 				56BEC58F18095F8500D2C201 /* s_noish.pd in Resources */,
+				567421A419A31B7E00777232 /* lowblock.wav in Resources */,
 				56BEC5F218095F8500D2C201 /* u_spinner-help.pd in Resources */,
 				56BEC4A618095F8500D2C201 /* c_drunk-help.pd in Resources */,
 				56BEC53818095F8500D2C201 /* m_autoscale-help.pd in Resources */,

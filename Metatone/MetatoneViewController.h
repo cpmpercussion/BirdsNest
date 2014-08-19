@@ -1,13 +1,15 @@
 //
 //  MetatoneViewController.h
-//  Metatone
+//  BirdsNest App View Controller.
+//  Designed for Ensemble Evolution performances at PASIC 2013
+//  Revised for Ensemble Metatone projects, August 2014.
 //
 //  Created by Charles Martin on 7/04/13.
 //  Copyright (c) 2013 Charles Martin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreMotion/CoreMotion.h>
+//#import <CoreMotion/CoreMotion.h>
 #import "PdAudioController.h"
 #import "PdBase.h"
 #import "LoopingNote.h"
@@ -17,8 +19,6 @@
 @interface MetatoneViewController : UIViewController <PdReceiverDelegate, LoopingNoteDelegate,MetatoneNetworkManagerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *loopSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *fieldSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *cymbalSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *noteSwitch;
 @property (strong, nonatomic) NSString* lastGesture;
 @property (nonatomic) int sameGestureCount;
 @property (strong,nonatomic) MetatoneNetworkManager *networkManager;

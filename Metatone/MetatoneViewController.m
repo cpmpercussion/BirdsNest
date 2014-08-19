@@ -1,6 +1,8 @@
 //
 //  MetatoneViewController.m
-//  Metatone
+//  BirdsNest App View Controller.
+//  Designed for Ensemble Evolution performances at PASIC 2013
+//  Revised for Ensemble Metatone projects, August 2014.
 //
 //  Created by Charles Martin on 7/04/13.
 //  Copyright (c) 2013 Charles Martin. All rights reserved.
@@ -39,7 +41,7 @@
 }
 
 @property (strong,nonatomic) PdAudioController *audioController;
-@property (strong, nonatomic) CMMotionManager* motionManager;
+//@property (strong, nonatomic) CMMotionManager* motionManager;
 @property (nonatomic) Boolean oscLogging;
 @property (nonatomic) Boolean accelLogging;
 @property (weak, nonatomic) IBOutlet UILabel *scaleLabel;
@@ -53,7 +55,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (nonatomic) int tapMode;
 @property (nonatomic) int scaleMode;
+@property (nonatomic) int scene;
 @property (strong, nonatomic) NSDate* timeOfLastNewIdea;
+@property (strong, nonatomic) NSArray* backgroundImages;
 @end
 
 @implementation MetatoneViewController
@@ -80,85 +84,129 @@ void arraysize_setup();
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-    // Setup Pd
-    //[self.audioController configurePlaybackWithSampleRate:22050 numberChannels:2 inputEnabled:NO mixingEnabled:NO];
+    // Setup Pd Audio Controller
     if([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES] != PdAudioOK) {
         NSLog(@"failed to initialise audioController");
     } else {
         NSLog(@"audioController initialised.");
     }
     
-    
-    // Load externs
+    // Setup Pd Patch
     arraysize_setup();
-    
     [PdBase openFile:@"birdsnestsounds.pd" path:[[NSBundle mainBundle] bundlePath]];
     [self.audioController setActive: YES];
     [self.audioController print];
     [PdBase setDelegate:self];
     [PdBase sendBangToReceiver:@"randomiseSounds"];
     
+    // Always OSC Logging
+    self.oscLogging = YES;
+    [self setupOscLogging];
     
-    // Setup Logging
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OSCLogging"]) {
-        self.oscLogging = YES;
-        [self setupOscLogging];
-        NSLog(@"OSC Logging Enabled.");
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"AccelerationLogging"]) {
-            self.accelLogging = YES;
-        }
-    } else {
-        [self.oscLoggingLabel setText:@""];
-        [self.oscLoggingSpinner setHidden:YES];
-        self.oscLogging = NO;
-        NSLog(@"No OSC Logging.");
-    }
+//    // Setup Logging
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OSCLogging"]) {
+//        self.oscLogging = YES;
+//        [self setupOscLogging];
+//        NSLog(@"OSC Logging Enabled.");
+//    } else {
+//        [self.oscLoggingLabel setText:@""];
+//        [self.oscLoggingSpinner setHidden:YES];
+//        self.oscLogging = NO;
+//        NSLog(@"No OSC Logging.");
+//    }
     
+//    // Setup Accelerometer
+//    self.motionManager = [[CMMotionManager alloc] init];
+//    [self.motionManager startDeviceMotionUpdates];
+//    
+//    if (self.accelLogging) {
+//        self.motionManager.accelerometerUpdateInterval = 1.0/100.0;
+//        if (self.motionManager.accelerometerAvailable) {
+//            NSLog(@"Accelerometer Available.");
+//            queue = [NSOperationQueue currentQueue];
+//            [self.motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+//                CMAcceleration acceleration = accelerometerData.acceleration;
+//                if (self.oscLogging) [self.networkManager sendMessageWithAccelerationX:acceleration.x Y:acceleration.y Z:acceleration.z];
+//            }];
+//        }
+//    }
     
-    // Setup Accelerometer
-    self.motionManager = [[CMMotionManager alloc] init];
-    [self.motionManager startDeviceMotionUpdates];
+    // Set performance variables
     
-    if (self.accelLogging) {
-        self.motionManager.accelerometerUpdateInterval = 1.0/100.0;
-        if (self.motionManager.accelerometerAvailable) {
-            NSLog(@"Accelerometer Available.");
-            queue = [NSOperationQueue currentQueue];
-            [self.motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-                CMAcceleration acceleration = accelerometerData.acceleration;
-                if (self.oscLogging) [self.networkManager sendMessageWithAccelerationX:acceleration.x Y:acceleration.y Z:acceleration.z];
-            }];
-        }
-    }
+    self.backgroundImages = @[[UIImage imageNamed:@"forest.jpg"],
+                              [UIImage imageNamed:@"path.jpg"],
+                              [UIImage imageNamed:@"hillpath.jpg"],
+                              [UIImage imageNamed:@"treetops.jpg"]];
     
-    // Looping Test
     self.tapLooping = NO;
     self.tapMode = 1;
     self.scaleMode = 0;
     [self.scaleLabel setText:@"F Mixo"];
     self.sameGestureCount = 0;
-    [self changeBackgroundImage];
-    [self reset:Nil];
+    self.scene = 0;
+    [self updateScene];
+//    [self changeBackgroundImage];
+//    [self reset:Nil];
     self.timeOfLastNewIdea = [NSDate date];
 }
 
+#pragma mark - Composition Methods
 
--(void)changeBackgroundImage {
-    int choice = arc4random_uniform(3);
-    if (choice == 0) {
-        [self.backgroundImage setImage:[UIImage imageNamed:@"forest.jpg"]];
-    } else if (choice == 1) {
-        [self.backgroundImage setImage:[UIImage imageNamed:@"path.jpg"]];
-    } else if (choice == 2) {
-        [self.backgroundImage setImage:[UIImage imageNamed:@"treetops.jpg"]];
+-(void) nextScene {
+    self.scene = (self.scene + 1) % 4;
+    [self updateScene];
+    NSLog(@"New Scene: %d", self.scene);
+}
+
+-(void) updateBackgroundImage {
+    [UIView transitionWithView:self.backgroundImage
+                      duration:3.0f//0.33f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [self.backgroundImage setImage:self.backgroundImages[self.scene]];
+                    } completion:NULL];
+}
+
+-(void) updateScene {
+    [self updateBackgroundImage];
+    switch (self.scene) {
+        case 0:
+            NSLog(@"Starting Scene 0");
+            [self randomiseScale];
+            break;
+        case 1:
+            NSLog(@"Starting Scene 1");
+            [self randomiseScale];
+            break;
+        case 2:
+            NSLog(@"Starting Scene 2");
+            [self randomiseScale];
+            break;
+        case 3:
+            NSLog(@"Starting Scene 3");
+            [self randomiseScale];
+            break;
+        default:
+            NSLog(@"Scene counter out of range: %d, resetting", self.scene);
+            self.scene = 0;
+            [self updateScene];
+            break;
     }
 }
 
-#pragma mark - Note Methods
+// Scale Method
+- (void)randomiseScale {
+    // increment scale mode
+    self.scaleMode = (self.scaleMode + 1) % 3;
+    // update scale label
+    if (self.scaleMode == SCALE_MODE_F_MIXO) [self.scaleLabel setText:@"F Mixo"];
+    if (self.scaleMode == SCALE_MODE_C_LYDSHARP) [self.scaleLabel setText:@"C Lyd Sharp 5"];
+    if (self.scaleMode == SCALE_MODE_FSHARP_LYD) [self.scaleLabel setText:@"F# Lydian"];
+    [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
+}
 
+#pragma mark - Note Methods
 -(void)triggerTappedNote:(CGPoint)tapPoint {
     // Send to Pd
     if (self.tapMode == TAP_MODE_FIELDS || self.tapMode == TAP_MODE_BOTH) {
@@ -198,8 +246,7 @@ void arraysize_setup();
     if (self.tapLooping) [self.touchView drawNoteCircleAt:notePoint];
 }
 
-#pragma mark - Touch
-
+#pragma mark - Touch Methods
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
@@ -228,8 +275,6 @@ void arraysize_setup();
     [self.touchView drawTouchCircleAt:touchPoint]; // draw in the view
 }
 
-
-
 -(void)sendMidiNoteFromPoint:(CGPoint) point withVelocity:(int) vel
 {
     CGFloat distance = [self calculateDistanceFromCenter:point]/600;
@@ -246,12 +291,8 @@ void arraysize_setup();
     [PdBase sendNoteOn:1 pitch:note velocity:velocity]; // send the note to Pd
 }
 
-
 -(void)touchesMoved:(NSSet *) touches withEvent:(UIEvent *)event
 {
-    // a moving touch.
-    // take distance from center
-    // take delta from previous location (proportional to velocity)
     UITouch *touch = [touches anyObject];
     CGFloat xVelocity = [touch locationInView:self.view].x - [touch previousLocationInView:self.view].x;
     CGFloat yVelocity = [touch locationInView:self.view].y - [touch previousLocationInView:self.view].y;
@@ -266,22 +307,23 @@ void arraysize_setup();
     [self.touchView hideMovingTouchCircle];
 }
 
-#pragma mark - UI
-
-// Cluster Auto Play Switch
-- (IBAction)clustersOn:(UISwitch *)sender {
-    if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"clustersOn" On:sender.on];
-    float value = (sender.on) ? 1 : 0;
-    [PdBase sendFloat:value toReceiver:@"autoBowl"];
+- (IBAction)panGestureRecognized:(UIPanGestureRecognizer *)sender {
+    CGFloat xVelocity = [sender velocityInView:self.view].x;
+    CGFloat yVelocity = [sender velocityInView:self.view].y;
+    CGFloat velocity = sqrt((xVelocity * xVelocity) + (yVelocity * yVelocity));
+    
+    if ([sender state] == UIGestureRecognizerStateBegan) {
+        // send pan began message
+        [PdBase sendFloat:velocity toReceiver:@"panstarted"];
+    } else if ([sender state] == UIGestureRecognizerStateChanged) {
+        // send normal pan changed message
+        [PdBase sendFloat:velocity toReceiver:@"touchvelocity" ];
+    } else if (([sender state] == UIGestureRecognizerStateEnded) || ([sender state] == UIGestureRecognizerStateCancelled)) {
+        [PdBase sendBangToReceiver:@"touchended" ];
+    }
 }
 
-// Cymbal Auto Play Switch
-- (IBAction)cymbalsOn:(UISwitch *)sender {
-    if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"cymbalsOn" On:sender.on];
-    float value = (sender.on) ? 1 : 0;
-    [PdBase sendFloat:value toReceiver:@"autoCymbal"];
-}
-
+#pragma mark - UI Buttons and Switches
 // Field Recording auto play Switch
 - (IBAction)fieldsOn:(UISwitch *)sender {
     if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"fieldsOn" On:sender.on];
@@ -308,45 +350,13 @@ void arraysize_setup();
     [self.networkManager sendMetatoneMessage:METATONE_TAPMODE_MESSAGE
                                    withState:[NSString stringWithFormat:@"%d",self.tapMode]];
     
-    if (arc4random_uniform(100)>75) [self randomiseScale];
-}
-
-// Scale Button
-- (IBAction)changeScale:(UIButton *)sender {
-    [self randomiseScale];
-}
-
-// Scale Method
-- (void)randomiseScale {
-    // increment scale mode
-    self.scaleMode = (self.scaleMode + 1) % 3;
-    // update scale label
-    if (self.scaleMode == SCALE_MODE_F_MIXO) [self.scaleLabel setText:@"F Mixo"];
-    if (self.scaleMode == SCALE_MODE_C_LYDSHARP) [self.scaleLabel setText:@"C Lyd Sharp 5"];
-    if (self.scaleMode == SCALE_MODE_FSHARP_LYD) [self.scaleLabel setText:@"F# Lydian"];
-    
-    [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
-}
-
-
-- (IBAction)panGestureRecognized:(UIPanGestureRecognizer *)sender {
-    CGFloat xVelocity = [sender velocityInView:self.view].x;
-    CGFloat yVelocity = [sender velocityInView:self.view].y;
-    CGFloat velocity = sqrt((xVelocity * xVelocity) + (yVelocity * yVelocity));
-        
-    if ([sender state] == UIGestureRecognizerStateBegan) {
-        // send pan began message
-        [PdBase sendFloat:velocity toReceiver:@"panstarted"];        
-    } else if ([sender state] == UIGestureRecognizerStateChanged) {
-        // send normal pan changed message
-        [PdBase sendFloat:velocity toReceiver:@"touchvelocity" ];
-    } else if (([sender state] == UIGestureRecognizerStateEnded) || ([sender state] == UIGestureRecognizerStateCancelled)) {
-        [PdBase sendBangToReceiver:@"touchended" ];
+    if (arc4random_uniform(100)>75) {
+        [self nextScene];
     }
 }
 
-#pragma mark - OSC LOGGING
 
+#pragma mark - OSC LOGGING
 - (void)setupOscLogging
 {
     self.networkManager = [[MetatoneNetworkManager alloc] initWithDelegate:self shouldOscLog:self.oscLogging];
@@ -445,9 +455,10 @@ void arraysize_setup();
 
 -(void)didReceiveEnsembleEvent:(NSString *)event forDevice:(NSString *)device withMeasure:(NSNumber *)measure {
     if ([self.timeOfLastNewIdea timeIntervalSinceNow] < -10.0) {
-        [self reset:nil];
-        [self changeBackgroundImage];
-        NSLog(@"Ensemble Event Received: Reset.");
+        [self nextScene];
+//        [self reset:nil];
+
+        NSLog(@"Ensemble Event Received: Next Scene.");
         self.timeOfLastNewIdea = [NSDate date];
     } else {
         NSLog(@"Ensemble Event Received: Too soon after last event!");
