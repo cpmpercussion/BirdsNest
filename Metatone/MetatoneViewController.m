@@ -50,7 +50,7 @@
 
 
 #define LOOPED_NOTE_LIMIT 200
-#define STANDARD_NOTE_RANGE 35
+#define STANDARD_NOTE_RANGE 30
 #define MAX_NOTE_RELEASE 1500
 #define MIN_NOTE_RELEASE 100
 
@@ -87,6 +87,7 @@
 @property (nonatomic) int noteRelease;
 @property (strong, nonatomic) NSString* noteMode;
 @property (strong, nonatomic) NSString* swipeMode;
+@property (nonatomic) Boolean resetChangesScene;
 @end
 
 @implementation MetatoneViewController
@@ -113,7 +114,6 @@ void arraysize_setup();
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Setup Pd Audio Controller
     if([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES] != PdAudioOK) {
         NSLog(@"failed to initialise audioController");
@@ -151,29 +151,21 @@ void arraysize_setup();
                               [UIImage imageNamed:@"path.jpg"],
                               [UIImage imageNamed:@"hillpath.jpg"],
                               [UIImage imageNamed:@"treetops.jpg"]];
-    
+    self.resetChangesScene = YES;
     self.tapLooping = NO;
     self.tapMode = 1;
     self.scaleMode = 0;
-    [self.scaleLabel setText:@"F Mixo"];
+//    [self.scaleLabel setText:@"F Mixo"];
     self.sameGestureCount = 0;
     self.scene = 0;
-    [self updateScene];
     self.timeOfLastNewIdea = [NSDate date];
-    [self updateNoteVariables];
+    [self updateScene];
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateScene) userInfo:Nil repeats:NO];
 }
 
--(void) updateNoteVariables {
-    self.startingDegree = arc4random_uniform(24) - 12;
-    self.noteRange = STANDARD_NOTE_RANGE;
-    self.noteRelease = arc4random_uniform(MAX_NOTE_RELEASE - MIN_NOTE_RELEASE) + MIN_NOTE_RELEASE;
-    NSLog(@"Degree: %d, Range: %d, Release: %d", self.startingDegree, self.noteRange, self.noteRelease);
-    [PdBase sendFloat:(float) self.noteRelease toReceiver:@"noteRelease"];
-}
+
 
 #pragma mark - Composition Methods
-
 -(void) nextScene {
     self.scene = (self.scene + 1) % 4;
     [self updateScene];
@@ -221,19 +213,22 @@ void arraysize_setup();
     NSLog(@"Note Mode: %@", self.noteMode);
     [self updateScale];
     [self updateBackgroundImage];
+    [self updateNoteVariables];
     [PdBase sendBangToReceiver:self.noteMode];
     [PdBase sendBangToReceiver:self.swipeMode];
-}
-
-// Scale Method
-- (void)randomiseScale {
-    self.scaleMode = (self.scaleMode + 1) % 3;
-    [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
 }
 
 -(void)updateScale {
     self.scaleMode = self.scene;
     [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
+}
+
+-(void) updateNoteVariables {
+    self.startingDegree = arc4random_uniform(15) - 12;
+    self.noteRange = STANDARD_NOTE_RANGE;
+    self.noteRelease = arc4random_uniform(MAX_NOTE_RELEASE - MIN_NOTE_RELEASE) + MIN_NOTE_RELEASE;
+    NSLog(@"Degree: %d, Range: %d, Release: %d", self.startingDegree, self.noteRange, self.noteRelease);
+    [PdBase sendFloat:(float) self.noteRelease toReceiver:@"noteRelease"];
 }
 
 #pragma mark - Note Methods
@@ -281,23 +276,19 @@ void arraysize_setup();
 {
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.view];
-
     // Velocity.
     float radius = (touch._pathMajorRadius - 5.0)/16;
     int velocity = floorf(15 + (radius * 115));
     if (velocity > 127) velocity = 127;
     if (velocity < 0) velocity = 0;
-    
     // Send to Pd - receiver
     if (self.tapMode == TAP_MODE_FIELDS) {
         [PdBase sendFloat:velocity/127.0 toReceiver:@"tapdistance"];
     }
-    
     // Send to Pd as a midi note.
     if (self.tapMode == TAP_MODE_MELODY || self.tapMode == TAP_MODE_BOTH) {
         [self sendMidiNoteFromPoint:touchPoint withVelocity:velocity];
     }
-    
     // Logging, Looping and Display.
     if (self.tapLooping) [self scheduleRecurringTappedNote:touchPoint]; // setup looping note
     if (self.oscLogging) [self.networkManager sendMessageWithTouch:touchPoint Velocity:0.0]; // osc logging
@@ -327,10 +318,8 @@ void arraysize_setup();
             note = [ScaleMaker lydian:BASS_NOTE_ZERO withNote:note];
             break;
     }
-//    NSLog(@"End Note: %d",note);
-    [PdBase sendNoteOn:1 pitch:note velocity:velocity]; // send the note to Pd
+    [PdBase sendNoteOn:1 pitch:note velocity:velocity];
     [PdBase sendAftertouch:1 value:velocity];
-    NSLog(@"Velocity: %d",velocity);
 }
 
 -(void)touchesMoved:(NSSet *) touches withEvent:(UIEvent *)event
@@ -353,8 +342,6 @@ void arraysize_setup();
     CGFloat xVelocity = [sender velocityInView:self.view].x;
     CGFloat yVelocity = [sender velocityInView:self.view].y;
     CGFloat velocity = sqrt((xVelocity * xVelocity) + (yVelocity * yVelocity));
-
-    
     velocity = velocity / HIGHEST_SWIPE_VELOCITY;
     if (velocity < 0) velocity = 0.0;
     if (velocity > 1) velocity = 1.0;
@@ -381,7 +368,6 @@ void arraysize_setup();
     [PdBase sendFloat:value toReceiver:@"autoField"];
 }
 
-
 // Loop Control Button
 - (IBAction)loopingOn:(UISwitch *)sender {
     if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"loopingOn" On:sender.on];
@@ -403,19 +389,16 @@ void arraysize_setup();
     [self.networkManager sendMetatoneMessage:METATONE_RESET_MESSAGE withState:@"reset"];
     [self.networkManager sendMetatoneMessage:METATONE_TAPMODE_MESSAGE
                                    withState:[NSString stringWithFormat:@"%d",self.tapMode]];
-    
-    if (arc4random_uniform(100)>75) [self nextScene];
-//     if (!self.oscLogging) {
-//        if (arc4random_uniform(100)>75) [self nextScene];
-//    }
+    if (self.resetChangesScene) {
+        if (arc4random_uniform(100)>75) [self nextScene];
+    }
 }
 
 
-#pragma mark - OSC LOGGING
+#pragma mark - Network
 - (void)setupOscLogging
 {
     self.networkManager = [[MetatoneNetworkManager alloc] initWithDelegate:self shouldOscLog:self.oscLogging];
-    
     if (!self.networkManager) {
         self.oscLogging = NO;
         [self.oscLoggingLabel setText:@"OSC Logging: Not Connected. 😓"];
@@ -443,6 +426,7 @@ void arraysize_setup();
     [self.oscLoggingLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
     [self.fieldSwitch setHidden:YES]; // get rid of fieldswitch when connected to network.
     [self.autoplayLabel setHidden:YES];
+    self.resetChangesScene = NO;
 }
 
 -(void) stoppedSearchingForLoggingServer {
@@ -450,20 +434,21 @@ void arraysize_setup();
         // stop the spinner - write "Logging Server Not Found" in the field.
         [self.oscLoggingSpinner stopAnimating];
         [self.oscLoggingLabel setText: @"Logging Server Not Found! 😰"];
+        self.resetChangesScene = NO;
     }
 }
 
 -(void) didReceiveMetatoneMessageFrom:(NSString *)device withName:(NSString *)name andState:(NSString *)state {
     //NSLog([NSString stringWithFormat:@"METATONE: Received app message from:%@ with state:%@",device,state]);
-    
     if ([name isEqualToString:METATONE_SCALE_MESSAGE]) {
         NSLog(@"METATONE: Scale Message received.");
         self.scaleMode = [state intValue];
         
     } else if ([name isEqualToString:METATONE_RESET_MESSAGE]) {
         NSLog(@"METATONE: Reset Message received.");
-        if (arc4random_uniform(100) > 80) [PdBase sendBangToReceiver:@"randomiseSounds"];
-        
+        if (self.resetChangesScene) {
+            if (arc4random_uniform(100)>75) [self nextScene];
+        }
     } else if ([name isEqualToString:METATONE_TAPMODE_MESSAGE]) {
         NSLog(@"METATONE: TapMode Message received.");
         if (arc4random_uniform(100) > 80) self.tapMode = [state intValue];
@@ -477,26 +462,6 @@ void arraysize_setup();
 }
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {
-// 20140818 - Stop using gestures to mess with Field and Loops
-    //    if ([class isEqualToString:self.lastGesture]) {
-//        self.sameGestureCount++;
-//    } else {
-//        self.sameGestureCount = 0;
-//    }
-//    
-//    if (self.sameGestureCount > 3 && arc4random_uniform(100)>85) {
-//        self.sameGestureCount = 0;
-//        if (arc4random_uniform(10)>5) {
-//            [self.loopSwitch setOn:!self.loopSwitch.on animated:YES];
-//            [self loopingOn:self.loopSwitch];
-//            NSLog(@"Loops Changed by Classifier");
-//        } else {
-//            [self.fieldSwitch setOn:!self.fieldSwitch.on animated:YES];
-//            [self fieldsOn:self.fieldSwitch];
-//            NSLog(@"Fields Changed by Classifier");
-//        }
-//    }
-//    self.lastGesture = class;
 }
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber *)ratio {
@@ -505,10 +470,8 @@ void arraysize_setup();
 }
 
 -(void)didReceiveEnsembleEvent:(NSString *)event forDevice:(NSString *)device withMeasure:(NSNumber *)measure {
-    if ([self.timeOfLastNewIdea timeIntervalSinceNow] < -10.0) {
+    if ([self.timeOfLastNewIdea timeIntervalSinceNow] < -60.0) {
         [self nextScene];
-//        [self reset:nil];
-
         NSLog(@"Ensemble Event Received: Next Scene.");
         self.timeOfLastNewIdea = [NSDate date];
     } else {
