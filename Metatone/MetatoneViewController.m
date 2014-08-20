@@ -35,11 +35,24 @@
 #define METATONE_RESET_MESSAGE @"RESET"
 #define METATONE_TAPMODE_MESSAGE @"TAPMODE"
 
-#define HIGHEST_SWIPE_VELOCITY 2500.0;
+#define NOTE_MODE_BIRDS @"chooseFromBirds"
+#define NOTE_MODE_NOTES @"chooseFromNotes"
+#define NOTE_MODE_ALL @"chooseFromAllSounds"
+#define NOTE_MODE_ALL_XYLO @"chooseFromAllSoundsXylo"
+
+#define SWIPE_MODE_ZERO @"swipeModeZero"
+#define SWIPE_MODE_ONE @"swipeModeOne"
+#define SWIPE_MODE_TWO @"swipeModeTwo"
+#define SWIPE_MODE_THREE @"swipeModeThree"
+
+#define HIGHEST_SWIPE_VELOCITY 4000.0;
+//#define HIGHEST_SWIPE_VELOCITY 2500.0;
+
 
 #define LOOPED_NOTE_LIMIT 200
-
 #define STANDARD_NOTE_RANGE 35
+#define MAX_NOTE_RELEASE 1500
+#define MIN_NOTE_RELEASE 100
 
 
 @interface UITouch (Private)
@@ -71,6 +84,9 @@
 @property (strong, nonatomic) NSArray* backgroundImages;
 @property (nonatomic) int startingDegree;
 @property (nonatomic) int noteRange;
+@property (nonatomic) int noteRelease;
+@property (strong, nonatomic) NSString* noteMode;
+@property (strong, nonatomic) NSString* swipeMode;
 @end
 
 @implementation MetatoneViewController
@@ -129,22 +145,6 @@ void arraysize_setup();
 //        NSLog(@"No OSC Logging.");
 //    }
     
-//    // Setup Accelerometer
-//    self.motionManager = [[CMMotionManager alloc] init];
-//    [self.motionManager startDeviceMotionUpdates];
-//    
-//    if (self.accelLogging) {
-//        self.motionManager.accelerometerUpdateInterval = 1.0/100.0;
-//        if (self.motionManager.accelerometerAvailable) {
-//            NSLog(@"Accelerometer Available.");
-//            queue = [NSOperationQueue currentQueue];
-//            [self.motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-//                CMAcceleration acceleration = accelerometerData.acceleration;
-//                if (self.oscLogging) [self.networkManager sendMessageWithAccelerationX:acceleration.x Y:acceleration.y Z:acceleration.z];
-//            }];
-//        }
-//    }
-    
     // Set performance variables
     
     self.backgroundImages = @[[UIImage imageNamed:@"forest.jpg"],
@@ -161,12 +161,15 @@ void arraysize_setup();
     [self updateScene];
     self.timeOfLastNewIdea = [NSDate date];
     [self updateNoteVariables];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateScene) userInfo:Nil repeats:NO];
 }
 
 -(void) updateNoteVariables {
     self.startingDegree = arc4random_uniform(24) - 12;
     self.noteRange = STANDARD_NOTE_RANGE;
-    NSLog(@"Degree: %d, Range: %d", self.startingDegree, self.noteRange);
+    self.noteRelease = arc4random_uniform(MAX_NOTE_RELEASE - MIN_NOTE_RELEASE) + MIN_NOTE_RELEASE;
+    NSLog(@"Degree: %d, Range: %d, Release: %d", self.startingDegree, self.noteRange, self.noteRelease);
+    [PdBase sendFloat:(float) self.noteRelease toReceiver:@"noteRelease"];
 }
 
 #pragma mark - Composition Methods
@@ -187,20 +190,27 @@ void arraysize_setup();
 }
 
 -(void) updateScene {
-    [self updateBackgroundImage];
-    [self updateScale];
     switch (self.scene) {
         case 0:
             NSLog(@"Starting Scene 0");
+            self.noteMode = NOTE_MODE_BIRDS;
+            self.swipeMode = SWIPE_MODE_ZERO;
             break;
         case 1:
             NSLog(@"Starting Scene 1");
+            self.noteMode = NOTE_MODE_ALL;
+            self.swipeMode = SWIPE_MODE_ONE;
             break;
         case 2:
             NSLog(@"Starting Scene 2");
+            self.noteMode = NOTE_MODE_NOTES;
+            self.swipeMode = SWIPE_MODE_TWO;
+
             break;
         case 3:
             NSLog(@"Starting Scene 3");
+            self.noteMode = NOTE_MODE_ALL_XYLO;
+            self.swipeMode = SWIPE_MODE_THREE;
             break;
         default:
             NSLog(@"Scene counter out of range: %d, resetting", self.scene);
@@ -208,6 +218,11 @@ void arraysize_setup();
             [self updateScene];
             break;
     }
+    NSLog(@"Note Mode: %@", self.noteMode);
+    [self updateScale];
+    [self updateBackgroundImage];
+    [PdBase sendBangToReceiver:self.noteMode];
+    [PdBase sendBangToReceiver:self.swipeMode];
 }
 
 // Scale Method
@@ -294,7 +309,6 @@ void arraysize_setup();
     CGFloat distance = [self calculateDistanceFromCenter:point]/640;
     int velocity = vel;
     int note = (int) (distance * self.noteRange) + self.startingDegree;
-    NSLog(@"Start Note: %d",note);
     
     switch (self.scaleMode) {
         case SCALE_MODE_ZERO:
@@ -313,8 +327,10 @@ void arraysize_setup();
             note = [ScaleMaker lydian:BASS_NOTE_ZERO withNote:note];
             break;
     }
-    NSLog(@"End Note: %d",note);
+//    NSLog(@"End Note: %d",note);
     [PdBase sendNoteOn:1 pitch:note velocity:velocity]; // send the note to Pd
+    [PdBase sendAftertouch:1 value:velocity];
+    NSLog(@"Velocity: %d",velocity);
 }
 
 -(void)touchesMoved:(NSSet *) touches withEvent:(UIEvent *)event
@@ -377,7 +393,10 @@ void arraysize_setup();
 // Reset Sounds Button
 - (IBAction)reset:(id)sender {
     if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"resetButton" On:YES];
-    [PdBase sendBangToReceiver:@"randomiseSounds"];
+//    [PdBase sendBangToReceiver:@"randomiseSounds"];
+    [PdBase sendBangToReceiver:self.noteMode];
+    [PdBase sendBangToReceiver:self.swipeMode];
+
     [self updateNoteVariables];
     self.tapMode = 1 + ((self.tapMode + 1) % 2);
 
@@ -385,9 +404,10 @@ void arraysize_setup();
     [self.networkManager sendMetatoneMessage:METATONE_TAPMODE_MESSAGE
                                    withState:[NSString stringWithFormat:@"%d",self.tapMode]];
     
-    if (arc4random_uniform(100)>75) {
-        [self nextScene];
-    }
+    if (arc4random_uniform(100)>75) [self nextScene];
+//     if (!self.oscLogging) {
+//        if (arc4random_uniform(100)>75) [self nextScene];
+//    }
 }
 
 
