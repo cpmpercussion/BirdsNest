@@ -8,7 +8,7 @@
 #X obj 209 33 inlet;
 #X obj 209 100 list prepend open;
 #X obj 209 124 list trim;
-#X obj 38 362 s_cpmlooper_open cb1;
+#X obj 38 362 cpmlooper cb1;
 #X obj 37 560 *~;
 #X obj 209 54 s \$0-tableName;
 #X obj 209 79 r \$0-tableName;

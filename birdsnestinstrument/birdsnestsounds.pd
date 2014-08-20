@@ -1440,7 +1440,7 @@
 #X obj 334 110 list trim;
 #X obj 245 77 t b a b;
 #X msg 284 109 info;
-#X obj 71 335 s_cpmlooper_open cb1;
+#X obj 71 335 cpmlooper cb1;
 #X connect 0 0 17 0;
 #X connect 3 0 19 0;
 #X connect 4 0 10 0;
@@ -1655,7 +1655,7 @@
 #X msg 591 173 open ff1;
 #X msg 605 198 open stream;
 #X msg 341 237 open stream;
-#X obj 117 360 s_cpmlooper_open pitea;
+#X obj 117 360 cpmlooper pitea;
 #X connect 0 0 5 0;
 #X connect 3 0 22 0;
 #X connect 4 0 20 0;
