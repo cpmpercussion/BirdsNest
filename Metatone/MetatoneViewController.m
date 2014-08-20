@@ -18,9 +18,15 @@
 #define TAP_MODE_BOTH 2
 #define LOOP_TIME 5000
 
-#define SCALE_MODE_F_MIXO 0
-#define SCALE_MODE_FSHARP_LYD 1
-#define SCALE_MODE_C_LYDSHARP 2
+#define SCALE_MODE_ZERO 0
+#define SCALE_MODE_ONE 1
+#define SCALE_MODE_TWO 2
+#define SCALE_MODE_THREE 3
+#define BASS_NOTE_ZERO 48
+#define BASS_NOTE_ONE 44
+#define BASS_NOTE_TWO 51
+#define BASS_NOTE_THREE 49
+
 #define METATONE_SCALE_MESSAGE @"SCALE"
 
 #define METATONE_SWITCH_MESSAGE @"SWITCH"
@@ -29,7 +35,12 @@
 #define METATONE_RESET_MESSAGE @"RESET"
 #define METATONE_TAPMODE_MESSAGE @"TAPMODE"
 
+#define HIGHEST_SWIPE_VELOCITY 2500.0;
+
 #define LOOPED_NOTE_LIMIT 200
+
+#define STANDARD_NOTE_RANGE 35
+
 
 @interface UITouch (Private)
 -(float)_pathMajorRadius;
@@ -58,6 +69,8 @@
 @property (nonatomic) int scene;
 @property (strong, nonatomic) NSDate* timeOfLastNewIdea;
 @property (strong, nonatomic) NSArray* backgroundImages;
+@property (nonatomic) int startingDegree;
+@property (nonatomic) int noteRange;
 @end
 
 @implementation MetatoneViewController
@@ -147,6 +160,13 @@ void arraysize_setup();
     self.scene = 0;
     [self updateScene];
     self.timeOfLastNewIdea = [NSDate date];
+    [self updateNoteVariables];
+}
+
+-(void) updateNoteVariables {
+    self.startingDegree = arc4random_uniform(24) - 12;
+    self.noteRange = STANDARD_NOTE_RANGE;
+    NSLog(@"Degree: %d, Range: %d", self.startingDegree, self.noteRange);
 }
 
 #pragma mark - Composition Methods
@@ -159,7 +179,7 @@ void arraysize_setup();
 
 -(void) updateBackgroundImage {
     [UIView transitionWithView:self.backgroundImage
-                      duration:3.0f//0.33f
+                      duration:0.33f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         [self.backgroundImage setImage:self.backgroundImages[self.scene]];
@@ -168,22 +188,19 @@ void arraysize_setup();
 
 -(void) updateScene {
     [self updateBackgroundImage];
+    [self updateScale];
     switch (self.scene) {
         case 0:
             NSLog(@"Starting Scene 0");
-            [self randomiseScale];
             break;
         case 1:
             NSLog(@"Starting Scene 1");
-            [self randomiseScale];
             break;
         case 2:
             NSLog(@"Starting Scene 2");
-            [self randomiseScale];
             break;
         case 3:
             NSLog(@"Starting Scene 3");
-            [self randomiseScale];
             break;
         default:
             NSLog(@"Scene counter out of range: %d, resetting", self.scene);
@@ -195,12 +212,12 @@ void arraysize_setup();
 
 // Scale Method
 - (void)randomiseScale {
-    // increment scale mode
     self.scaleMode = (self.scaleMode + 1) % 3;
-    // update scale label
-    if (self.scaleMode == SCALE_MODE_F_MIXO) [self.scaleLabel setText:@"F Mixo"];
-    if (self.scaleMode == SCALE_MODE_C_LYDSHARP) [self.scaleLabel setText:@"C Lyd Sharp 5"];
-    if (self.scaleMode == SCALE_MODE_FSHARP_LYD) [self.scaleLabel setText:@"F# Lydian"];
+    [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
+}
+
+-(void)updateScale {
+    self.scaleMode = self.scene;
     [self.networkManager sendMetatoneMessage:METATONE_SCALE_MESSAGE withState:[NSString stringWithFormat:@"%d", self.scaleMode]];
 }
 
@@ -208,8 +225,8 @@ void arraysize_setup();
 -(void)triggerTappedNote:(CGPoint)tapPoint {
     // Send to Pd
     if (self.tapMode == TAP_MODE_FIELDS || self.tapMode == TAP_MODE_BOTH) {
-        [PdBase sendBangToReceiver:@"touch" ]; // makes a small sound
-        [PdBase sendFloat:[self calculateDistanceFromCenter:tapPoint]/600 toReceiver:@"tapdistance" ];
+        float tapDistanceProportion = [self calculateDistanceFromCenter:tapPoint]/640.0;
+        [PdBase sendFloat:tapDistanceProportion toReceiver:@"tapdistance" ];
     }
     if (self.tapMode == TAP_MODE_MELODY || self.tapMode == TAP_MODE_BOTH) {
         [self sendMidiNoteFromPoint:tapPoint withVelocity:40];
@@ -257,9 +274,8 @@ void arraysize_setup();
     if (velocity < 0) velocity = 0;
     
     // Send to Pd - receiver
-    if (self.tapMode == TAP_MODE_FIELDS || self.tapMode == TAP_MODE_FIELDS) {
-        [PdBase sendBangToReceiver:@"touch" ]; // makes a small sound
-        [PdBase sendFloat:velocity/100.0 toReceiver:@"tapdistance"];
+    if (self.tapMode == TAP_MODE_FIELDS) {
+        [PdBase sendFloat:velocity/127.0 toReceiver:@"tapdistance"];
     }
     
     // Send to Pd as a midi note.
@@ -275,17 +291,29 @@ void arraysize_setup();
 
 -(void)sendMidiNoteFromPoint:(CGPoint) point withVelocity:(int) vel
 {
-    CGFloat distance = [self calculateDistanceFromCenter:point]/600;
+    CGFloat distance = [self calculateDistanceFromCenter:point]/640;
     int velocity = vel;
-    int note = (int) (distance * 35);
+    int note = (int) (distance * self.noteRange) + self.startingDegree;
+    NSLog(@"Start Note: %d",note);
     
-    if (self.scaleMode == SCALE_MODE_F_MIXO) {
-        note = [ScaleMaker mixolydian:41 withNote:note];
-    } else if (self.scaleMode == SCALE_MODE_FSHARP_LYD) {
-        note = [ScaleMaker lydian:42 withNote:note];
-    } else if (self.scaleMode == SCALE_MODE_C_LYDSHARP) {
-        note = [ScaleMaker lydianSharpFive:36 withNote:note];
+    switch (self.scaleMode) {
+        case SCALE_MODE_ZERO:
+            note = [ScaleMaker lydian:BASS_NOTE_ZERO withNote:note];
+            break;
+        case SCALE_MODE_ONE:
+            note = [ScaleMaker lydian:BASS_NOTE_ONE withNote:note];
+            break;
+        case SCALE_MODE_TWO:
+            note = [ScaleMaker phrygian:BASS_NOTE_TWO withNote:note];
+            break;
+        case SCALE_MODE_THREE:
+            note = [ScaleMaker mixolydian:BASS_NOTE_THREE withNote:note];
+            break;
+        default:
+            note = [ScaleMaker lydian:BASS_NOTE_ZERO withNote:note];
+            break;
     }
+    NSLog(@"End Note: %d",note);
     [PdBase sendNoteOn:1 pitch:note velocity:velocity]; // send the note to Pd
 }
 
@@ -309,10 +337,18 @@ void arraysize_setup();
     CGFloat xVelocity = [sender velocityInView:self.view].x;
     CGFloat yVelocity = [sender velocityInView:self.view].y;
     CGFloat velocity = sqrt((xVelocity * xVelocity) + (yVelocity * yVelocity));
+
+    
+    velocity = velocity / HIGHEST_SWIPE_VELOCITY;
+    if (velocity < 0) velocity = 0.0;
+    if (velocity > 1) velocity = 1.0;
     
     if ([sender state] == UIGestureRecognizerStateBegan) {
         // send pan began message
-        [PdBase sendFloat:velocity toReceiver:@"panstarted"];
+        float tapDistanceProportion = [self calculateDistanceFromCenter:
+                                       [sender locationInView:self.view]]/640.0;
+        if (!tapDistanceProportion) tapDistanceProportion = 0;
+        [PdBase sendFloat:tapDistanceProportion toReceiver:@"panstarted"];
     } else if ([sender state] == UIGestureRecognizerStateChanged) {
         // send normal pan changed message
         [PdBase sendFloat:velocity toReceiver:@"touchvelocity" ];
@@ -342,6 +378,7 @@ void arraysize_setup();
 - (IBAction)reset:(id)sender {
     if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"resetButton" On:YES];
     [PdBase sendBangToReceiver:@"randomiseSounds"];
+    [self updateNoteVariables];
     self.tapMode = 1 + ((self.tapMode + 1) % 2);
 
     [self.networkManager sendMetatoneMessage:METATONE_RESET_MESSAGE withState:@"reset"];
@@ -402,10 +439,6 @@ void arraysize_setup();
     if ([name isEqualToString:METATONE_SCALE_MESSAGE]) {
         NSLog(@"METATONE: Scale Message received.");
         self.scaleMode = [state intValue];
-        // update scale label
-        if (self.scaleMode == SCALE_MODE_F_MIXO) [self.scaleLabel setText:@"F Mixo"];
-        if (self.scaleMode == SCALE_MODE_C_LYDSHARP) [self.scaleLabel setText:@"C Lyd Sharp 5"];
-        if (self.scaleMode == SCALE_MODE_FSHARP_LYD) [self.scaleLabel setText:@"F# Lydian"];
         
     } else if ([name isEqualToString:METATONE_RESET_MESSAGE]) {
         NSLog(@"METATONE: Reset Message received.");

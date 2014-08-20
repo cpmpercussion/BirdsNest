@@ -18,5 +18,4 @@
 +(int) major:(int)base withNote:(int)note;
 +(int) lydian:(int)base withNote:(int)note;
 +(int) lydianSharpFive:(int)base withNote:(int)note;
-
 @end
