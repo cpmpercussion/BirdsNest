@@ -30,6 +30,8 @@
 		563D136118A460C1009BF1A1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563D136018A460C1009BF1A1 /* CFNetwork.framework */; };
 		563D136318A46363009BF1A1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563D136218A46363009BF1A1 /* Security.framework */; };
 		563D5B5919A4490000AE859C /* slicesampler.pd in Resources */ = {isa = PBXBuildFile; fileRef = 563D5B5819A4490000AE859C /* slicesampler.pd */; };
+		563D5B5C19A4617500AE859C /* dispatch.pd in Resources */ = {isa = PBXBuildFile; fileRef = 563D5B5A19A4617500AE859C /* dispatch.pd */; };
+		563D5B5D19A4617500AE859C /* stereovol.pd in Resources */ = {isa = PBXBuildFile; fileRef = 563D5B5B19A4617500AE859C /* stereovol.pd */; };
 		565601DE1711957D00E819A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601DD1711957D00E819A3 /* UIKit.framework */; };
 		565601E01711957D00E819A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601DF1711957D00E819A3 /* Foundation.framework */; };
 		565601E21711957D00E819A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601E11711957D00E819A3 /* CoreGraphics.framework */; };
@@ -512,6 +514,8 @@
 		563D136018A460C1009BF1A1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		563D136218A46363009BF1A1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		563D5B5819A4490000AE859C /* slicesampler.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slicesampler.pd; sourceTree = "<group>"; };
+		563D5B5A19A4617500AE859C /* dispatch.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dispatch.pd; sourceTree = "<group>"; };
+		563D5B5B19A4617500AE859C /* stereovol.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stereovol.pd; sourceTree = "<group>"; };
 		565601DA1711957D00E819A3 /* BirdsNest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdsNest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		565601DD1711957D00E819A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		565601DF1711957D00E819A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1133,6 +1137,8 @@
 		56BEC2F918095F8300D2C201 /* birdsnestinstrument */ = {
 			isa = PBXGroup;
 			children = (
+				563D5B5A19A4617500AE859C /* dispatch.pd */,
+				563D5B5B19A4617500AE859C /* stereovol.pd */,
 				563D5B5819A4490000AE859C /* slicesampler.pd */,
 				56BEC2FA18095F8300D2C201 /* arraysize.c */,
 				56BEC2FC18095F8300D2C201 /* birdsnestsounds.pd */,
@@ -1940,6 +1946,7 @@
 				56BEC5D718095F8500D2C201 /* u_lowpassq.pd in Resources */,
 				56BEC57318095F8500D2C201 /* s_buzz.pd in Resources */,
 				56BEC5E518095F8500D2C201 /* u_robinpolymono.pd in Resources */,
+				563D5B5D19A4617500AE859C /* stereovol.pd in Resources */,
 				568B4E7F18341DA5005356A7 /* yelpyelpyelp.wav in Resources */,
 				56BEC5AB18095F8500D2C201 /* u_bandpass2q-help.pd in Resources */,
 				56BEC4D018095F8500D2C201 /* e_alias.pd in Resources */,
@@ -2039,6 +2046,7 @@
 				56BEC4B118095F8500D2C201 /* c_madsr.pd in Resources */,
 				56BEC5F418095F8500D2C201 /* u_splicetrans-help.pd in Resources */,
 				56BEC5FC18095F8500D2C201 /* cpmlooper.pd in Resources */,
+				563D5B5C19A4617500AE859C /* dispatch.pd in Resources */,
 				56BEC5B818095F8500D2C201 /* u_fade.pd in Resources */,
 				56BEC4D718095F8500D2C201 /* e_chorus-help.pd in Resources */,
 				56BEC5B318095F8500D2C201 /* u_dispatch-help.pd in Resources */,

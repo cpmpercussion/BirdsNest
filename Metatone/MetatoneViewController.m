@@ -146,8 +146,6 @@ void arraysize_setup();
     self.sameGestureCount = 0;
     self.scene = 0;
     [self updateScene];
-//    [self changeBackgroundImage];
-//    [self reset:Nil];
     self.timeOfLastNewIdea = [NSDate date];
 }
 
