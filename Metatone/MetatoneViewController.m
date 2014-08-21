@@ -68,11 +68,8 @@
 //@property (strong, nonatomic) CMMotionManager* motionManager;
 @property (nonatomic) Boolean oscLogging;
 @property (nonatomic) Boolean accelLogging;
-@property (weak, nonatomic) IBOutlet UILabel *scaleLabel;
-
 @property (nonatomic) Boolean tapLooping;
 @property (weak, nonatomic) IBOutlet UILabel *oscLoggingLabel;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *oscLoggingSpinner;
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong, nonatomic) NSMutableArray *loopedNotes;
 @property (weak, nonatomic) IBOutlet MetatoneTouchView *touchView;
@@ -155,7 +152,7 @@ void arraysize_setup();
                               [UIImage imageNamed:@"treetops.jpg"]];
     self.resetChangesScene = YES;
     self.tapLooping = NO;
-    self.tapMode = 1;
+    self.tapMode = TAP_MODE_MELODY; // stays like this for whole performance 21/8
     self.scaleMode = 0;
     self.releaseMax = MAX_NOTE_RELEASE;
     self.releaseMin = MIN_NOTE_RELEASE;
@@ -393,12 +390,11 @@ void arraysize_setup();
 // Reset Sounds Button
 - (IBAction)reset:(id)sender {
     if (self.oscLogging) [self.networkManager sendMesssageSwitch:@"resetButton" On:YES];
-//    [PdBase sendBangToReceiver:@"randomiseSounds"];
     [PdBase sendBangToReceiver:self.noteMode];
     [PdBase sendBangToReceiver:self.swipeMode];
-
     [self updateNoteVariables];
-    self.tapMode = 1 + ((self.tapMode + 1) % 2);
+    
+    //    self.tapMode = 1 + ((self.tapMode + 1) % 2);
 
     [self.networkManager sendMetatoneMessage:METATONE_RESET_MESSAGE withState:@"reset"];
     [self.networkManager sendMetatoneMessage:METATONE_TAPMODE_MESSAGE
@@ -417,26 +413,25 @@ void arraysize_setup();
         self.oscLogging = NO;
         [self.oscLoggingLabel setText:@"OSC Logging: Not Connected. 😓"];
         NSLog(@"OSC Logging: Not Connected");
+        self.resetChangesScene = YES;
+
     }
 }
 
 -(void)stopOscLogging
 {
-    // Stop searching for metatoneLogging sessions and metatone sessions
     [self.networkManager stopSearches];
 }
 
 - (void) searchingForLoggingServer {
     if (self.oscLogging) {
-        // Spin the spinner - write "Searching for Logging Server" in the field
-        [self.oscLoggingSpinner startAnimating];
         [self.oscLoggingLabel setText:@""];
+        self.resetChangesScene = YES;
+
     }
 }
 
 -(void) loggingServerFoundWithAddress:(NSString *)address andPort:(int)port andHostname:(NSString *)hostname {
-    // Stop the spinner - update info in the field
-    [self.oscLoggingSpinner stopAnimating];
     [self.oscLoggingLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
     [self.fieldSwitch setHidden:YES]; // get rid of fieldswitch when connected to network.
     [self.autoplayLabel setHidden:YES];
@@ -445,10 +440,8 @@ void arraysize_setup();
 
 -(void) stoppedSearchingForLoggingServer {
     if (self.oscLogging) {
-        // stop the spinner - write "Logging Server Not Found" in the field.
-        [self.oscLoggingSpinner stopAnimating];
         [self.oscLoggingLabel setText: @"Logging Server Not Found! 😰"];
-        self.resetChangesScene = NO;
+        self.resetChangesScene = YES;
     }
 }
 
@@ -480,7 +473,6 @@ void arraysize_setup();
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber *)ratio {
     // Maybe do something with ensemble state?
-    
 }
 
 -(void)didReceiveEnsembleEvent:(NSString *)event forDevice:(NSString *)device withMeasure:(NSNumber *)measure {
