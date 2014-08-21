@@ -88,6 +88,8 @@
 @property (strong, nonatomic) NSString* noteMode;
 @property (strong, nonatomic) NSString* swipeMode;
 @property (nonatomic) Boolean resetChangesScene;
+@property (nonatomic) int releaseMin;
+@property (nonatomic) int releaseMax;
 @end
 
 @implementation MetatoneViewController
@@ -155,7 +157,8 @@ void arraysize_setup();
     self.tapLooping = NO;
     self.tapMode = 1;
     self.scaleMode = 0;
-//    [self.scaleLabel setText:@"F Mixo"];
+    self.releaseMax = MAX_NOTE_RELEASE;
+    self.releaseMin = MIN_NOTE_RELEASE;
     self.sameGestureCount = 0;
     self.scene = 0;
     self.timeOfLastNewIdea = [NSDate date];
@@ -185,24 +188,35 @@ void arraysize_setup();
     switch (self.scene) {
         case 0:
             NSLog(@"Starting Scene 0");
+            // Birds Only
             self.noteMode = NOTE_MODE_BIRDS;
             self.swipeMode = SWIPE_MODE_ZERO;
+            self.releaseMax = 500;
+            self.releaseMin = 100;
             break;
         case 1:
             NSLog(@"Starting Scene 1");
+            // Birds and a bit of xylo
             self.noteMode = NOTE_MODE_ALL;
             self.swipeMode = SWIPE_MODE_ONE;
+            self.releaseMax = 1500;
+            self.releaseMin = 100;
             break;
         case 2:
             NSLog(@"Starting Scene 2");
+            // Xylo and Blocks only
             self.noteMode = NOTE_MODE_NOTES;
             self.swipeMode = SWIPE_MODE_TWO;
-
+            self.releaseMax = 1500;
+            self.releaseMin = 500;
             break;
         case 3:
             NSLog(@"Starting Scene 3");
+            // All but emphasises xylo.
             self.noteMode = NOTE_MODE_ALL_XYLO;
             self.swipeMode = SWIPE_MODE_THREE;
+            self.releaseMax = 2000;
+            self.releaseMin = 800;
             break;
         default:
             NSLog(@"Scene counter out of range: %d, resetting", self.scene);
@@ -226,7 +240,7 @@ void arraysize_setup();
 -(void) updateNoteVariables {
     self.startingDegree = arc4random_uniform(15) - 12;
     self.noteRange = STANDARD_NOTE_RANGE;
-    self.noteRelease = arc4random_uniform(MAX_NOTE_RELEASE - MIN_NOTE_RELEASE) + MIN_NOTE_RELEASE;
+    self.noteRelease = arc4random_uniform(self.releaseMax - self.releaseMin) + self.releaseMin;
     NSLog(@"Degree: %d, Range: %d, Release: %d", self.startingDegree, self.noteRange, self.noteRelease);
     [PdBase sendFloat:(float) self.noteRelease toReceiver:@"noteRelease"];
 }
