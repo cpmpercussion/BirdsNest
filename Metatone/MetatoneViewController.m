@@ -54,12 +54,6 @@
 #define MAX_NOTE_RELEASE 1500
 #define MIN_NOTE_RELEASE 100
 
-
-@interface UITouch (Private)
--(float)_pathMajorRadius;
-@end
-
-
 @interface MetatoneViewController () {
     NSOperationQueue *queue;
 }
@@ -274,11 +268,12 @@ void arraysize_setup();
 {
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.view];
-    // Velocity.
-    float radius = (touch._pathMajorRadius - 5.0)/16;
-    int velocity = floorf(15 + (radius * 115));
+    // Velocity
+    int velocity = floorf(15 + (110*((touch.majorRadius)/80)));
+    NSLog(@"Velocity: %d",velocity);
     if (velocity > 127) velocity = 127;
     if (velocity < 0) velocity = 0;
+    
     // Send to Pd - receiver
     if (self.tapMode == TAP_MODE_FIELDS) {
         [PdBase sendFloat:velocity/127.0 toReceiver:@"tapdistance"];
