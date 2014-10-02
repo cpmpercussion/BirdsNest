@@ -188,7 +188,7 @@ void arraysize_setup();
             // Birds Only
             self.noteMode = NOTE_MODE_BIRDS;
             self.swipeMode = SWIPE_MODE_ZERO;
-            self.releaseMax = 500;
+            self.releaseMax = 300;
             self.releaseMin = 100;
             break;
         case 1:
@@ -196,7 +196,7 @@ void arraysize_setup();
             // Birds and a bit of xylo
             self.noteMode = NOTE_MODE_ALL;
             self.swipeMode = SWIPE_MODE_ONE;
-            self.releaseMax = 1500;
+            self.releaseMax = 1000;
             self.releaseMin = 100;
             break;
         case 2:
@@ -353,7 +353,8 @@ void arraysize_setup();
     CGFloat xVelocity = [sender velocityInView:self.view].x;
     CGFloat yVelocity = [sender velocityInView:self.view].y;
     CGFloat velocity = sqrt((xVelocity * xVelocity) + (yVelocity * yVelocity));
-    velocity = velocity / HIGHEST_SWIPE_VELOCITY;
+//    velocity = velocity / HIGHEST_SWIPE_VELOCITY; // changed out 23/08/2014
+    velocity = log(velocity)/10; // changed in 23/08/2014
     if (velocity < 0) velocity = 0.0;
     if (velocity > 1) velocity = 1.0;
     
