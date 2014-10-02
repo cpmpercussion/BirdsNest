@@ -132,20 +132,7 @@ void arraysize_setup();
     self.oscLogging = YES;
     [self setupOscLogging];
     
-//    // Setup Logging
-//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OSCLogging"]) {
-//        self.oscLogging = YES;
-//        [self setupOscLogging];
-//        NSLog(@"OSC Logging Enabled.");
-//    } else {
-//        [self.oscLoggingLabel setText:@""];
-//        [self.oscLoggingSpinner setHidden:YES];
-//        self.oscLogging = NO;
-//        NSLog(@"No OSC Logging.");
-//    }
-    
     // Set performance variables
-    
     self.backgroundImages = @[[UIImage imageNamed:@"forest.jpg"],
                               [UIImage imageNamed:@"path.jpg"],
                               [UIImage imageNamed:@"hillpath.jpg"],
@@ -428,7 +415,6 @@ void arraysize_setup();
     if (self.oscLogging) {
         [self.oscLoggingLabel setText:@""];
         self.resetChangesScene = YES;
-
     }
 }
 
