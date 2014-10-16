@@ -10,7 +10,6 @@
 		5616A59818FC132D0092983C /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616A59718FC132D0092983C /* SRWebSocket.m */; };
 		5616A59C18FD1F080092983C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5616A59B18FD1F080092983C /* libicucore.dylib */; };
 		561CE01717882267009ECCFA /* ScaleMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 561CE01617882267009ECCFA /* ScaleMaker.m */; };
-		562C1997171513D800C698FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 562C1996171513D800C698FF /* Settings.bundle */; };
 		5639BB8F18D15B0E00CD6759 /* F53OSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB6E18D15B0E00CD6759 /* F53OSCBundle.m */; };
 		5639BB9018D15B0E00CD6759 /* F53OSCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB7018D15B0E00CD6759 /* F53OSCClient.m */; };
 		5639BB9118D15B0E00CD6759 /* F53OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5639BB7318D15B0E00CD6759 /* F53OSCMessage.m */; };
@@ -481,7 +480,6 @@
 		5616A59B18FD1F080092983C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		561CE01517882267009ECCFA /* ScaleMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleMaker.h; sourceTree = "<group>"; };
 		561CE01617882267009ECCFA /* ScaleMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleMaker.m; sourceTree = "<group>"; };
-		562C1996171513D800C698FF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5639BB6C18D15B0E00CD6759 /* F53OSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F53OSC.h; sourceTree = "<group>"; };
 		5639BB6D18D15B0E00CD6759 /* F53OSCBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F53OSCBundle.h; sourceTree = "<group>"; };
 		5639BB6E18D15B0E00CD6759 /* F53OSCBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F53OSCBundle.m; sourceTree = "<group>"; };
@@ -1098,7 +1096,6 @@
 		565601E31711957D00E819A3 /* Metatone */ = {
 			isa = PBXGroup;
 			children = (
-				562C1996171513D800C698FF /* Settings.bundle */,
 				565601EC1711957D00E819A3 /* MetatoneAppDelegate.h */,
 				565601ED1711957D00E819A3 /* MetatoneAppDelegate.m */,
 				565601F81711957D00E819A3 /* MainStoryboard_iPad.storyboard */,
@@ -1798,7 +1795,6 @@
 				56BEC52C18095F8500D2C201 /* g_vol2-help.pd in Resources */,
 				56BEC5E318095F8500D2C201 /* u_robinpoly.pd in Resources */,
 				56BEC52D18095F8500D2C201 /* g_vol2.pd in Resources */,
-				562C1997171513D800C698FF /* Settings.bundle in Resources */,
 				56BEC57C18095F8500D2C201 /* s_ejun-help.pd in Resources */,
 				56BEC58D18095F8500D2C201 /* s_loopsmooth.pd in Resources */,
 				56BEC4B918095F8500D2C201 /* c_mphasor.pd in Resources */,
