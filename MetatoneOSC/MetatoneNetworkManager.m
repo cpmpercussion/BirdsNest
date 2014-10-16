@@ -168,7 +168,7 @@
     NSString* firstAddress;
     int firstPort;
     
-    NSLog(@"NETWORK MANAGER: Port: %i",[sender port]);
+    NSLog(@"NETWORK MANAGER: Port: %i",(int) [sender port]);
     NSLog(@"NETWORK MANAGER: Hostname: %@",[sender hostName]);
     
     // Parse "addresses" as IP string and port.

@@ -25,7 +25,7 @@
     int scalenote = 0;
     if (note < 0) {
         note = abs(note);
-        octave = (-1 * (note / [scale count])) - 1;
+        octave = (int) (-1 * (note / [scale count])) - 1;
         scalenote = [scale[([scale count] -1) - (note % [scale count])] intValue];
     } else {
         octave = note / [scale count];
