@@ -425,7 +425,7 @@ void arraysize_setup();
 
 -(void) stoppedSearchingForLoggingServer {
     if (self.oscLogging) {
-        [self.oscLoggingLabel setText: @"Logging Server Not Found! 😰"];
+        [self.oscLoggingLabel setText: @"server not found! 😰"];
         self.resetChangesScene = YES;
     }
 }
