@@ -144,6 +144,7 @@ void arraysize_setup();
     self.scene = 0;
     self.timeOfLastNewIdea = [NSDate date];
     [self updateScene];
+    [self.oscLoggingLabel setHidden:YES];
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateScene) userInfo:Nil repeats:NO];
 }
 
@@ -398,6 +399,8 @@ void arraysize_setup();
     if (!self.networkManager) {
         self.oscLogging = NO;
         [self.oscLoggingLabel setText:@"OSC Logging: Not Connected. 😓"];
+        [self.oscLoggingLabel setHidden:NO];
+
         NSLog(@"OSC Logging: Not Connected");
         self.resetChangesScene = YES;
 
@@ -412,6 +415,7 @@ void arraysize_setup();
 - (void) searchingForLoggingServer {
     if (self.oscLogging) {
         [self.oscLoggingLabel setText:@""];
+        [self.oscLoggingLabel setHidden:YES];
         self.resetChangesScene = YES;
     }
 }
@@ -420,12 +424,14 @@ void arraysize_setup();
     [self.oscLoggingLabel setText:[NSString stringWithFormat:@"connected to %@ 👍", hostname]];
     [self.fieldSwitch setHidden:YES]; // get rid of fieldswitch when connected to network.
     [self.autoplayLabel setHidden:YES];
+    [self.oscLoggingLabel setHidden:NO];
     self.resetChangesScene = NO;
 }
 
 -(void) stoppedSearchingForLoggingServer {
     if (self.oscLogging) {
         [self.oscLoggingLabel setText: @"server not found! 😰"];
+        [self.oscLoggingLabel setHidden:NO];
         self.resetChangesScene = YES;
     }
 }
