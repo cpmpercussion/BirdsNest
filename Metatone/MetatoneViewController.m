@@ -122,6 +122,9 @@ void arraysize_setup();
     [PdBase setDelegate:self];
     [PdBase sendBangToReceiver:@"randomiseSounds"];
     
+    // Setup Midi
+    self.midiManager = [[MetatoneMidiManager alloc] init];
+    
     // Always OSC Logging
     self.oscLogging = YES;
     [self setupOscLogging];

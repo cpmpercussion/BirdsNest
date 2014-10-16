@@ -14,7 +14,7 @@
 #import "PdBase.h"
 #import "LoopingNote.h"
 #import "MetatoneNetworkManager.h"
-
+#import "MetatoneMidiManager.h"
 
 @interface MetatoneViewController : UIViewController <PdReceiverDelegate, LoopingNoteDelegate,MetatoneNetworkManagerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *loopSwitch;
@@ -25,6 +25,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *autoplayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *loopingLabel;
+
+@property (strong, nonatomic) MetatoneMidiManager* midiManager;
+
 
 - (void)setupOscLogging;
 - (void)stopOscLogging;
