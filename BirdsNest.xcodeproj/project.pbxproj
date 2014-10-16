@@ -56,6 +56,7 @@
 		568B4E7D18341DA5005356A7 /* whirpwhirp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7918341DA5005356A7 /* whirpwhirp.wav */; };
 		568B4E7E18341DA5005356A7 /* xylo-C.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7A18341DA5005356A7 /* xylo-C.wav */; };
 		568B4E7F18341DA5005356A7 /* yelpyelpyelp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7B18341DA5005356A7 /* yelpyelpyelp.wav */; };
+		56A0D8DF19EF89BB00CEF76C /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A0D8DE19EF89BB00CEF76C /* Launch Screen.xib */; };
 		56BD3FBA1712FA5E004FBB65 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FB71712FA4C004FBB65 /* libpd-ios.a */; };
 		56BD3FBE1712FAA3004FBB65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FBD1712FAA3004FBB65 /* AudioToolbox.framework */; };
 		56BD3FC01712FAAA004FBB65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FBF1712FAAA004FBB65 /* AVFoundation.framework */; };
@@ -558,6 +559,7 @@
 		568B4E7918341DA5005356A7 /* whirpwhirp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whirpwhirp.wav; sourceTree = "<group>"; };
 		568B4E7A18341DA5005356A7 /* xylo-C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "xylo-C.wav"; sourceTree = "<group>"; };
 		568B4E7B18341DA5005356A7 /* yelpyelpyelp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yelpyelpyelp.wav; sourceTree = "<group>"; };
+		56A0D8DE19EF89BB00CEF76C /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		56BD3FB11712FA4C004FBB65 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = "../pd-for-ios/libpd/libpd.xcodeproj"; sourceTree = "<group>"; };
 		56BD3FBD1712FAA3004FBB65 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		56BD3FBF1712FAAA004FBB65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1110,6 +1112,7 @@
 				56D9F2EC171E2EF100B28B75 /* LoopingNote.m */,
 				562C1985171508A600C698FF /* Resources */,
 				565601E41711957D00E819A3 /* Supporting Files */,
+				56A0D8DE19EF89BB00CEF76C /* Launch Screen.xib */,
 			);
 			path = Metatone;
 			sourceTree = "<group>";
@@ -1761,6 +1764,7 @@
 				56BEC4D318095F8500D2C201 /* e_beequad-help.pd in Resources */,
 				56BEC5A318095F8500D2C201 /* s_wsb.pd in Resources */,
 				56BEC48218095F8500D2C201 /* birdsnestsounds.pd in Resources */,
+				56A0D8DF19EF89BB00CEF76C /* Launch Screen.xib in Resources */,
 				56BEC52418095F8500D2C201 /* g_synsl-help.pd in Resources */,
 				56BEC5D918095F8500D2C201 /* u_makepoly.pd in Resources */,
 				56BEC5ED18095F8500D2C201 /* u_samplekit2.pd in Resources */,
