@@ -31,6 +31,10 @@
 		563D5B5919A4490000AE859C /* slicesampler.pd in Resources */ = {isa = PBXBuildFile; fileRef = 563D5B5819A4490000AE859C /* slicesampler.pd */; };
 		563D5B5C19A4617500AE859C /* dispatch.pd in Resources */ = {isa = PBXBuildFile; fileRef = 563D5B5A19A4617500AE859C /* dispatch.pd */; };
 		563D5B5D19A4617500AE859C /* stereovol.pd in Resources */ = {isa = PBXBuildFile; fileRef = 563D5B5B19A4617500AE859C /* stereovol.pd */; };
+		564F58D819F4A66600BF22D3 /* MetatoneMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 564F58CE19F4A66600BF22D3 /* MetatoneMidiManager.m */; };
+		564F58D919F4A66600BF22D3 /* PGMidi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 564F58D119F4A66600BF22D3 /* PGMidi.mm */; };
+		564F58DA19F4A66600BF22D3 /* PGMidiAllSources.mm in Sources */ = {isa = PBXBuildFile; fileRef = 564F58D319F4A66600BF22D3 /* PGMidiAllSources.mm */; };
+		564F58DB19F4A66600BF22D3 /* PGMidiFind.mm in Sources */ = {isa = PBXBuildFile; fileRef = 564F58D519F4A66600BF22D3 /* PGMidiFind.mm */; };
 		565601DE1711957D00E819A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601DD1711957D00E819A3 /* UIKit.framework */; };
 		565601E01711957D00E819A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601DF1711957D00E819A3 /* Foundation.framework */; };
 		565601E21711957D00E819A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601E11711957D00E819A3 /* CoreGraphics.framework */; };
@@ -44,10 +48,6 @@
 		565602071711957D00E819A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565601DF1711957D00E819A3 /* Foundation.framework */; };
 		5656020F1711957D00E819A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5656020D1711957D00E819A3 /* InfoPlist.strings */; };
 		565602121711957D00E819A3 /* MetatoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 565602111711957D00E819A3 /* MetatoneTests.m */; };
-		5673A94019EF4F7200B0ACDF /* MetatoneMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5673A93819EF4F7200B0ACDF /* MetatoneMidiManager.m */; };
-		5673A94119EF4F7200B0ACDF /* PGMidi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5673A93B19EF4F7200B0ACDF /* PGMidi.mm */; };
-		5673A94219EF4F7200B0ACDF /* PGMidiAllSources.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5673A93D19EF4F7200B0ACDF /* PGMidiAllSources.mm */; };
-		5673A94319EF4F7200B0ACDF /* PGMidiFind.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5673A93F19EF4F7200B0ACDF /* PGMidiFind.mm */; };
 		5673A94A19EF510100B0ACDF /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5673A94919EF510100B0ACDF /* CoreMIDI.framework */; };
 		567421A019A2FE7600777232 /* hillpath.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5674219F19A2FE7600777232 /* hillpath.jpg */; };
 		567421A419A31B7E00777232 /* lowblock.wav in Resources */ = {isa = PBXBuildFile; fileRef = 567421A319A31B7E00777232 /* lowblock.wav */; };
@@ -519,6 +519,16 @@
 		563D5B5819A4490000AE859C /* slicesampler.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slicesampler.pd; sourceTree = "<group>"; };
 		563D5B5A19A4617500AE859C /* dispatch.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dispatch.pd; sourceTree = "<group>"; };
 		563D5B5B19A4617500AE859C /* stereovol.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stereovol.pd; sourceTree = "<group>"; };
+		564F58CC19F4A66600BF22D3 /* iOSVersionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSVersionDetection.h; sourceTree = "<group>"; };
+		564F58CD19F4A66600BF22D3 /* MetatoneMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneMidiManager.h; sourceTree = "<group>"; };
+		564F58CE19F4A66600BF22D3 /* MetatoneMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneMidiManager.m; sourceTree = "<group>"; };
+		564F58CF19F4A66600BF22D3 /* PGArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGArc.h; sourceTree = "<group>"; };
+		564F58D019F4A66600BF22D3 /* PGMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMidi.h; sourceTree = "<group>"; };
+		564F58D119F4A66600BF22D3 /* PGMidi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGMidi.mm; sourceTree = "<group>"; };
+		564F58D219F4A66600BF22D3 /* PGMidiAllSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMidiAllSources.h; sourceTree = "<group>"; };
+		564F58D319F4A66600BF22D3 /* PGMidiAllSources.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGMidiAllSources.mm; sourceTree = "<group>"; };
+		564F58D419F4A66600BF22D3 /* PGMidiFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMidiFind.h; sourceTree = "<group>"; };
+		564F58D519F4A66600BF22D3 /* PGMidiFind.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGMidiFind.mm; sourceTree = "<group>"; };
 		565601DA1711957D00E819A3 /* BirdsNest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdsNest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		565601DD1711957D00E819A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		565601DF1711957D00E819A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -539,16 +549,6 @@
 		565602101711957D00E819A3 /* MetatoneTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetatoneTests.h; sourceTree = "<group>"; };
 		565602111711957D00E819A3 /* MetatoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetatoneTests.m; sourceTree = "<group>"; };
 		566FCB62171680CB00E4E83B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		5673A93619EF4F7200B0ACDF /* iOSVersionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSVersionDetection.h; sourceTree = "<group>"; };
-		5673A93719EF4F7200B0ACDF /* MetatoneMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneMidiManager.h; sourceTree = "<group>"; };
-		5673A93819EF4F7200B0ACDF /* MetatoneMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneMidiManager.m; sourceTree = "<group>"; };
-		5673A93919EF4F7200B0ACDF /* PGArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGArc.h; sourceTree = "<group>"; };
-		5673A93A19EF4F7200B0ACDF /* PGMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMidi.h; sourceTree = "<group>"; };
-		5673A93B19EF4F7200B0ACDF /* PGMidi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGMidi.mm; sourceTree = "<group>"; };
-		5673A93C19EF4F7200B0ACDF /* PGMidiAllSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMidiAllSources.h; sourceTree = "<group>"; };
-		5673A93D19EF4F7200B0ACDF /* PGMidiAllSources.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGMidiAllSources.mm; sourceTree = "<group>"; };
-		5673A93E19EF4F7200B0ACDF /* PGMidiFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMidiFind.h; sourceTree = "<group>"; };
-		5673A93F19EF4F7200B0ACDF /* PGMidiFind.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGMidiFind.mm; sourceTree = "<group>"; };
 		5673A94719EF50AE00B0ACDF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		5673A94919EF510100B0ACDF /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		5674219F19A2FE7600777232 /* hillpath.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hillpath.jpg; sourceTree = "<group>"; };
@@ -1048,10 +1048,27 @@
 			path = MetatoneOSC;
 			sourceTree = "<group>";
 		};
+		564F58CA19F4A66600BF22D3 /* MetatoneMIDI */ = {
+			isa = PBXGroup;
+			children = (
+				564F58CC19F4A66600BF22D3 /* iOSVersionDetection.h */,
+				564F58CD19F4A66600BF22D3 /* MetatoneMidiManager.h */,
+				564F58CE19F4A66600BF22D3 /* MetatoneMidiManager.m */,
+				564F58CF19F4A66600BF22D3 /* PGArc.h */,
+				564F58D019F4A66600BF22D3 /* PGMidi.h */,
+				564F58D119F4A66600BF22D3 /* PGMidi.mm */,
+				564F58D219F4A66600BF22D3 /* PGMidiAllSources.h */,
+				564F58D319F4A66600BF22D3 /* PGMidiAllSources.mm */,
+				564F58D419F4A66600BF22D3 /* PGMidiFind.h */,
+				564F58D519F4A66600BF22D3 /* PGMidiFind.mm */,
+			);
+			path = MetatoneMIDI;
+			sourceTree = "<group>";
+		};
 		565601D11711957D00E819A3 = {
 			isa = PBXGroup;
 			children = (
-				5673A93519EF4F7200B0ACDF /* PGMidi */,
+				564F58CA19F4A66600BF22D3 /* MetatoneMIDI */,
 				5616A59418FC132D0092983C /* SocketRocket */,
 				5639BB6B18D15B0E00CD6759 /* MetatoneOSC */,
 				56BEC607180967C500D2C201 /* Images.xcassets */,
@@ -1142,23 +1159,6 @@
 				5656020D1711957D00E819A3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		5673A93519EF4F7200B0ACDF /* PGMidi */ = {
-			isa = PBXGroup;
-			children = (
-				5673A93619EF4F7200B0ACDF /* iOSVersionDetection.h */,
-				5673A93719EF4F7200B0ACDF /* MetatoneMidiManager.h */,
-				5673A93819EF4F7200B0ACDF /* MetatoneMidiManager.m */,
-				5673A93919EF4F7200B0ACDF /* PGArc.h */,
-				5673A93A19EF4F7200B0ACDF /* PGMidi.h */,
-				5673A93B19EF4F7200B0ACDF /* PGMidi.mm */,
-				5673A93C19EF4F7200B0ACDF /* PGMidiAllSources.h */,
-				5673A93D19EF4F7200B0ACDF /* PGMidiAllSources.mm */,
-				5673A93E19EF4F7200B0ACDF /* PGMidiFind.h */,
-				5673A93F19EF4F7200B0ACDF /* PGMidiFind.mm */,
-			);
-			path = PGMidi;
 			sourceTree = "<group>";
 		};
 		56BD3FB21712FA4C004FBB65 /* Products */ = {
@@ -2126,9 +2126,9 @@
 				5639BB9718D15B0E00CD6759 /* GCDAsyncSocket.m in Sources */,
 				5639BB9118D15B0E00CD6759 /* F53OSCMessage.m in Sources */,
 				5639BB9318D15B0E00CD6759 /* F53OSCParser.m in Sources */,
-				5673A94019EF4F7200B0ACDF /* MetatoneMidiManager.m in Sources */,
-				5673A94219EF4F7200B0ACDF /* PGMidiAllSources.mm in Sources */,
-				5673A94319EF4F7200B0ACDF /* PGMidiFind.mm in Sources */,
+				564F58D819F4A66600BF22D3 /* MetatoneMidiManager.m in Sources */,
+				564F58DA19F4A66600BF22D3 /* PGMidiAllSources.mm in Sources */,
+				564F58DB19F4A66600BF22D3 /* PGMidiFind.mm in Sources */,
 				565601EA1711957D00E819A3 /* main.m in Sources */,
 				5639BB9618D15B0E00CD6759 /* F53OSCTimeTag.m in Sources */,
 				5639BB9E18D15B0E00CD6759 /* NSString+F53OSCString.m in Sources */,
@@ -2148,7 +2148,7 @@
 				5639BB9218D15B0E00CD6759 /* F53OSCPacket.m in Sources */,
 				5616A59818FC132D0092983C /* SRWebSocket.m in Sources */,
 				561CE01717882267009ECCFA /* ScaleMaker.m in Sources */,
-				5673A94119EF4F7200B0ACDF /* PGMidi.mm in Sources */,
+				564F58D919F4A66600BF22D3 /* PGMidi.mm in Sources */,
 				5639BB9418D15B0E00CD6759 /* F53OSCServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
