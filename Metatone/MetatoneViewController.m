@@ -257,8 +257,14 @@ void arraysize_setup();
 }
 
 -(CGFloat)calculateDistanceFromCenter:(CGPoint)touchPoint {
-    CGFloat xDist = (touchPoint.x - self.view.center.y);
-    CGFloat yDist = (touchPoint.y - self.view.center.x);
+    CGFloat cX = self.view.center.x;
+    CGFloat cY = self.view.center.y;
+//    float cX = self.view.frame.size.width/2;
+//    float cY = self.view.frame.size.height/2;
+    
+    CGFloat xDist = (touchPoint.x - cX);
+    CGFloat yDist = (touchPoint.y - cY);
+//    NSLog(@"Distance from Centre: %f", sqrt((xDist * xDist) + (yDist * yDist)));
     return sqrt((xDist * xDist) + (yDist * yDist));
 }
 
