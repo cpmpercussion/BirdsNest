@@ -151,6 +151,10 @@
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
     
     if ([[aNetService type] isEqualToString:METATONE_SERVICE_TYPE]) {
+        if ([aNetService isEqual:self.metatoneNetService]) {
+            NSLog(@"NETWORK MANAGER: Found own metatone service - ignoring.");
+            return;
+        }
         [aNetService setDelegate:self];
         [aNetService resolveWithTimeout:5.0];
         [self.remoteMetatoneNetServices addObject:aNetService];

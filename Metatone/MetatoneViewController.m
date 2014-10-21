@@ -259,12 +259,9 @@ void arraysize_setup();
 -(CGFloat)calculateDistanceFromCenter:(CGPoint)touchPoint {
     CGFloat cX = self.view.center.x;
     CGFloat cY = self.view.center.y;
-//    float cX = self.view.frame.size.width/2;
-//    float cY = self.view.frame.size.height/2;
     
     CGFloat xDist = (touchPoint.x - cX);
     CGFloat yDist = (touchPoint.y - cY);
-//    NSLog(@"Distance from Centre: %f", sqrt((xDist * xDist) + (yDist * yDist)));
     return sqrt((xDist * xDist) + (yDist * yDist));
 }
 
@@ -280,7 +277,7 @@ void arraysize_setup();
     CGPoint touchPoint = [touch locationInView:self.view];
     // Velocity
     int velocity = floorf(15 + (110*((touch.majorRadius)/80)));
-    NSLog(@"Velocity: %d",velocity);
+    //    NSLog(@"Velocity: %d",velocity);
     if (velocity > 127) velocity = 127;
     if (velocity < 0) velocity = 0;
     
