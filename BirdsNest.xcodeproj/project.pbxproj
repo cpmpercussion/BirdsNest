@@ -92,6 +92,8 @@
 		56BEC6061809640200D2C201 /* treetops.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC6031809640200D2C201 /* treetops.jpg */; };
 		56BEC608180967C500D2C201 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC607180967C500D2C201 /* Images.xcassets */; };
 		56BEC60A18096AD000D2C201 /* crotale-C.wav in Resources */ = {isa = PBXBuildFile; fileRef = 56BEC60918096AD000D2C201 /* crotale-C.wav */; };
+		56D2C6A319F667E1008D703E /* c_multimetro.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56D2C6A219F667E1008D703E /* c_multimetro.pd */; };
+		56D2C6A719F667EA008D703E /* s_playtable.pd in Resources */ = {isa = PBXBuildFile; fileRef = 56D2C6A619F667EA008D703E /* s_playtable.pd */; };
 		56D9F2ED171E2EF100B28B75 /* LoopingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9F2EC171E2EF100B28B75 /* LoopingNote.m */; };
 		56D9F2F6171E592600B28B75 /* MetatoneTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9F2F5171E592600B28B75 /* MetatoneTouchView.m */; };
 		56D9F2F8171E79A200B28B75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9F2F7171E79A200B28B75 /* QuartzCore.framework */; };
@@ -243,6 +245,8 @@
 		56BEC6031809640200D2C201 /* treetops.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = treetops.jpg; sourceTree = "<group>"; };
 		56BEC607180967C500D2C201 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BirdsNest/Images.xcassets; sourceTree = "<group>"; };
 		56BEC60918096AD000D2C201 /* crotale-C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crotale-C.wav"; sourceTree = "<group>"; };
+		56D2C6A219F667E1008D703E /* c_multimetro.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = c_multimetro.pd; sourceTree = "<group>"; };
+		56D2C6A619F667EA008D703E /* s_playtable.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = s_playtable.pd; sourceTree = "<group>"; };
 		56D9F2EB171E2EF100B28B75 /* LoopingNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopingNote.h; sourceTree = "<group>"; };
 		56D9F2EC171E2EF100B28B75 /* LoopingNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopingNote.m; sourceTree = "<group>"; };
 		56D9F2F4171E592600B28B75 /* MetatoneTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneTouchView.h; sourceTree = "<group>"; };
@@ -521,6 +525,8 @@
 		56BEC2F918095F8300D2C201 /* birdsnestinstrument */ = {
 			isa = PBXGroup;
 			children = (
+				56D2C6A619F667EA008D703E /* s_playtable.pd */,
+				56D2C6A219F667E1008D703E /* c_multimetro.pd */,
 				560A732C19F6317000281C5A /* metaPdLibs */,
 				563D5B5819A4490000AE859C /* slicesampler.pd */,
 				56BEC2FA18095F8300D2C201 /* arraysize.c */,
@@ -675,6 +681,7 @@
 				560A734D19F6317000281C5A /* loadMetaPdLibs.pd in Resources */,
 				56BEC48318095F8500D2C201 /* percsampler.pd in Resources */,
 				56BEC48E18095F8500D2C201 /* forestfloor3.wav in Resources */,
+				56D2C6A319F667E1008D703E /* c_multimetro.pd in Resources */,
 				560A734F19F6317000281C5A /* m_lydian.pd in Resources */,
 				560A735019F6317000281C5A /* m_lydiansharp5.pd in Resources */,
 				56BEC48218095F8500D2C201 /* birdsnestsounds.pd in Resources */,
@@ -688,6 +695,7 @@
 				56BEC6061809640200D2C201 /* treetops.jpg in Resources */,
 				56BEC48D18095F8500D2C201 /* forestfloor2.wav in Resources */,
 				560A734319F6317000281C5A /* monopan.pd in Resources */,
+				56D2C6A719F667EA008D703E /* s_playtable.pd in Resources */,
 				56BEC48618095F8500D2C201 /* ainsliebirds3.wav in Resources */,
 				56BEC48518095F8500D2C201 /* ainsliebirds2.wav in Resources */,
 				56BEC48F18095F8500D2C201 /* piteabirds.wav in Resources */,
