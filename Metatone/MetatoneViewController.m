@@ -485,4 +485,30 @@ void arraysize_setup();
     return YES;
 }
 
+#pragma mark Pd Receivers
+
+- (void)receiveBangFromSource:(NSString *)source {
+    NSLog(@"PD BANG: %@",source);
+}
+
+- (void)receiveList:(NSArray *)list fromSource:(NSString *)source {
+    NSLog(@"PD LIST: %@",source);
+}
+
+- (void)receiveFloat:(float)received fromSource:(NSString *)source {
+    NSLog(@"PD FLOAT: %@ - %f",source,received);
+}
+
+- (void)receiveMessage:(NSString *)message withArguments:(NSArray *)arguments fromSource:(NSString *)source {
+    NSLog(@"PD string: %@",source);
+}
+
+- (void)receivePrint:(NSString *)message {
+    NSLog(@"PD print: %@",message);
+}
+
+- (void)receiveSymbol:(NSString *)symbol fromSource:(NSString *)source {
+    NSLog(@"PD symbol: %@",source);
+}
+
 @end
