@@ -619,7 +619,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Metatone;
-				LastTestingUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Charles Martin";
 				TargetAttributes = {
