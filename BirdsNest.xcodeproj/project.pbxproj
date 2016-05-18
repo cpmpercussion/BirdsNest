@@ -62,7 +62,6 @@
 		568B4E7E18341DA5005356A7 /* xylo-C.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7A18341DA5005356A7 /* xylo-C.wav */; };
 		568B4E7F18341DA5005356A7 /* yelpyelpyelp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 568B4E7B18341DA5005356A7 /* yelpyelpyelp.wav */; };
 		56A0D8DF19EF89BB00CEF76C /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A0D8DE19EF89BB00CEF76C /* Launch Screen.xib */; };
-		56BD3FBA1712FA5E004FBB65 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FB71712FA4C004FBB65 /* libpd-ios.a */; };
 		56BD3FBE1712FAA3004FBB65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FBD1712FAA3004FBB65 /* AudioToolbox.framework */; };
 		56BD3FC01712FAAA004FBB65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD3FBF1712FAAA004FBB65 /* AVFoundation.framework */; };
 		56BEC48018095F8500D2C201 /* arraysize.c in Sources */ = {isa = PBXBuildFile; fileRef = 56BEC2FA18095F8300D2C201 /* arraysize.c */; settings = {COMPILER_FLAGS = "-DPD -fno-objc-arc"; }; };
@@ -92,26 +91,11 @@
 		56D9F2ED171E2EF100B28B75 /* LoopingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9F2EC171E2EF100B28B75 /* LoopingNote.m */; };
 		56D9F2F6171E592600B28B75 /* MetatoneTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9F2F5171E592600B28B75 /* MetatoneTouchView.m */; };
 		56D9F2F8171E79A200B28B75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9F2F7171E79A200B28B75 /* QuartzCore.framework */; };
+		993D93407E4FBF54E216F55A /* libPods-BirdsNest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1266DC3DE03C6F95BB02C1F5 /* libPods-BirdsNest.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		56BD3FB61712FA4C004FBB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56BD3FB11712FA4C004FBB65 /* libpd.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = "libpd-ios";
-		};
-		56BD3FB81712FA4C004FBB65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56BD3FB11712FA4C004FBB65 /* libpd.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 119013AB1486450C00086F19;
-			remoteInfo = "libpd-osx";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		1266DC3DE03C6F95BB02C1F5 /* libPods-BirdsNest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BirdsNest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		560A732E19F6317000281C5A /* dispatch.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dispatch.pd; sourceTree = "<group>"; };
 		560A732F19F6317000281C5A /* monopan.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monopan.pd; sourceTree = "<group>"; };
 		560A733019F6317000281C5A /* stereovol.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stereovol.pd; sourceTree = "<group>"; };
@@ -206,7 +190,6 @@
 		568B4E7A18341DA5005356A7 /* xylo-C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "xylo-C.wav"; sourceTree = "<group>"; };
 		568B4E7B18341DA5005356A7 /* yelpyelpyelp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yelpyelpyelp.wav; sourceTree = "<group>"; };
 		56A0D8DE19EF89BB00CEF76C /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		56BD3FB11712FA4C004FBB65 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = "../pd-for-ios/libpd/libpd.xcodeproj"; sourceTree = "<group>"; };
 		56BD3FBD1712FAA3004FBB65 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		56BD3FBF1712FAAA004FBB65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		56BEC2FA18095F8300D2C201 /* arraysize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arraysize.c; sourceTree = "<group>"; };
@@ -239,6 +222,8 @@
 		56D9F2F4171E592600B28B75 /* MetatoneTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneTouchView.h; sourceTree = "<group>"; };
 		56D9F2F5171E592600B28B75 /* MetatoneTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneTouchView.m; sourceTree = "<group>"; };
 		56D9F2F7171E79A200B28B75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B7597F8DECAC35E959C38971 /* Pods-BirdsNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirdsNest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest.debug.xcconfig"; sourceTree = "<group>"; };
+		E2F7D6D52D9D1AA2453756FB /* Pods-BirdsNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirdsNest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +233,6 @@
 			files = (
 				5673A94A19EF510100B0ACDF /* CoreMIDI.framework in Frameworks */,
 				5616A59C18FD1F080092983C /* libicucore.dylib in Frameworks */,
-				56BD3FBA1712FA5E004FBB65 /* libpd-ios.a in Frameworks */,
 				563D136318A46363009BF1A1 /* Security.framework in Frameworks */,
 				563D136118A460C1009BF1A1 /* CFNetwork.framework in Frameworks */,
 				56D9F2F8171E79A200B28B75 /* QuartzCore.framework in Frameworks */,
@@ -257,12 +241,22 @@
 				56BD3FC01712FAAA004FBB65 /* AVFoundation.framework in Frameworks */,
 				565601DE1711957D00E819A3 /* UIKit.framework in Frameworks */,
 				565601E01711957D00E819A3 /* Foundation.framework in Frameworks */,
+				993D93407E4FBF54E216F55A /* libPods-BirdsNest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012635ADD363C4102791E15F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7597F8DECAC35E959C38971 /* Pods-BirdsNest.debug.xcconfig */,
+				E2F7D6D52D9D1AA2453756FB /* Pods-BirdsNest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		560A732C19F6317000281C5A /* metaPdLibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,7 +400,7 @@
 				5656020A1711957D00E819A3 /* MetatoneTests */,
 				565601DC1711957D00E819A3 /* Frameworks */,
 				565601DB1711957D00E819A3 /* Products */,
-				56BD3FB11712FA4C004FBB65 /* libpd.xcodeproj */,
+				012635ADD363C4102791E15F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -434,6 +428,7 @@
 				565601DF1711957D00E819A3 /* Foundation.framework */,
 				565601E11711957D00E819A3 /* CoreGraphics.framework */,
 				565602041711957D00E819A3 /* SenTestingKit.framework */,
+				1266DC3DE03C6F95BB02C1F5 /* libPods-BirdsNest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -487,15 +482,6 @@
 				5656020D1711957D00E819A3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		56BD3FB21712FA4C004FBB65 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				56BD3FB71712FA4C004FBB65 /* libpd-ios.a */,
-				56BD3FB91712FA4C004FBB65 /* libpd-osx.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		56BEC2F918095F8300D2C201 /* birdsnestinstrument */ = {
@@ -556,9 +542,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 565602151711957D00E819A3 /* Build configuration list for PBXNativeTarget "BirdsNest" */;
 			buildPhases = (
+				47835CC35D0AFB979ADA45E2 /* Check Pods Manifest.lock */,
 				565601D61711957D00E819A3 /* Sources */,
 				565601D71711957D00E819A3 /* Frameworks */,
 				565601D81711957D00E819A3 /* Resources */,
+				C20D49CFF8414BAD569EB164 /* Embed Pods Frameworks */,
+				573063F637A337A5A8E9732A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -595,35 +584,12 @@
 			mainGroup = 565601D11711957D00E819A3;
 			productRefGroup = 565601DB1711957D00E819A3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 56BD3FB21712FA4C004FBB65 /* Products */;
-					ProjectRef = 56BD3FB11712FA4C004FBB65 /* libpd.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				565601D91711957D00E819A3 /* BirdsNest */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		56BD3FB71712FA4C004FBB65 /* libpd-ios.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libpd-ios.a";
-			remoteRef = 56BD3FB61712FA4C004FBB65 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		56BD3FB91712FA4C004FBB65 /* libpd-osx.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libpd-osx.a";
-			remoteRef = 56BD3FB81712FA4C004FBB65 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		565601D81711957D00E819A3 /* Resources */ = {
@@ -681,6 +647,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		47835CC35D0AFB979ADA45E2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		573063F637A337A5A8E9732A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C20D49CFF8414BAD569EB164 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		565601D61711957D00E819A3 /* Sources */ = {
@@ -816,6 +830,7 @@
 		};
 		565602161711957D00E819A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7597F8DECAC35E959C38971 /* Pods-BirdsNest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -825,7 +840,7 @@
 				INFOPLIST_FILE = "Metatone/BirdsNest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.charlesmartin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BirdsNest;
 				PROVISIONING_PROFILE = "";
@@ -837,6 +852,7 @@
 		};
 		565602171711957D00E819A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2F7D6D52D9D1AA2453756FB /* Pods-BirdsNest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -846,7 +862,7 @@
 				INFOPLIST_FILE = "Metatone/BirdsNest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.charlesmartin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BirdsNest;
 				PROVISIONING_PROFILE = "";
