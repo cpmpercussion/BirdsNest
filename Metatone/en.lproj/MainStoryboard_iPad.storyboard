@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -13,18 +13,18 @@
                         <viewControllerLayoutGuide type="bottom" id="MdA-b9-JWQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="treetops.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qj2-vR-65x">
-                                <rect key="frame" x="0.0" y="0.0" width="640" height="960"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ZMX-QJ-ySn" appends="YES" id="3uk-tR-fCo"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="OSC Connected! 👍" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="431" translatesAutoresizingMaskIntoConstraints="NO" id="Y7M-h0-H85">
-                                <rect key="frame" x="170" y="28" width="300" height="40"/>
+                                <rect key="frame" x="150" y="28" width="300" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.41999999999999998" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
@@ -38,16 +38,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMO-F3-pwJ" customClass="MetatoneTouchView">
-                                <rect key="frame" x="0.0" y="0.0" width="640" height="960"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="looping" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-CS-fkx">
-                                        <rect key="frame" x="78" y="906" width="57" height="21"/>
+                                        <rect key="frame" x="78" y="746" width="57" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="autoplay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XM1-9v-N8I">
-                                        <rect key="frame" x="79" y="865" width="66" height="21"/>
+                                        <rect key="frame" x="79" y="705" width="66" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -62,7 +62,7 @@
                                 </constraints>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Iga-Xr-JQ2" userLabel="switch - looping">
-                                <rect key="frame" x="20" y="903" width="51" height="31"/>
+                                <rect key="frame" x="20" y="743" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="Zpt-Hn-UD3"/>
                                 </constraints>
@@ -72,14 +72,14 @@
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1ZF-I0-Rwa" userLabel="switch - autoplay">
-                                <rect key="frame" x="20" y="862" width="51" height="31"/>
+                                <rect key="frame" x="20" y="702" width="51" height="31"/>
                                 <color key="onTintColor" red="0.64705884456634521" green="0.43921571969985962" blue="0.30588236451148987" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <action selector="fieldsOn:" destination="2" eventType="valueChanged" id="MLj-Jk-KOc"/>
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZb-Qb-3tL">
-                                <rect key="frame" x="520" y="871" width="100" height="60"/>
+                                <rect key="frame" x="480" y="711" width="100" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="zJP-UC-mSe"/>
@@ -113,9 +113,9 @@
                             <constraint firstItem="qj2-vR-65x" firstAttribute="leading" secondItem="5" secondAttribute="leading" id="ua2-sU-6Jo"/>
                         </constraints>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="640" height="960"/>
+                    <size key="freeformSize" width="600" height="800"/>
                     <connections>
                         <outlet property="autoplayLabel" destination="XM1-9v-N8I" id="nW4-2m-sGo"/>
                         <outlet property="backgroundImage" destination="qj2-vR-65x" id="whD-vE-u7a"/>
@@ -134,6 +134,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="388" y="279"/>
         </scene>
     </scenes>
     <resources>

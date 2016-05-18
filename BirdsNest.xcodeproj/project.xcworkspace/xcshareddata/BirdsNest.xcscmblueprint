@@ -1,0 +1,58 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "013EC0084E093F2B16FFF43C2E31B91A2AD93C9D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5" : 0,
+    "778D08CA7C55C6E283FAC4140D174E64889DF148" : 0,
+    "013EC0084E093F2B16FFF43C2E31B91A2AD93C9D" : 0,
+    "1A0B07D1631AC7F0F17FCE76695E42D64F01958F" : 0,
+    "5C788FB45371F7A39B6FFB445D10D0EF209EBAE3" : 0,
+    "E92D265595D6FCFF23F817AF6192A4864182339E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7BA7CC97-B2BF-4095-B465-59E9DA5983A1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5" : "pd-for-ios\/libpd\/pure-data",
+    "778D08CA7C55C6E283FAC4140D174E64889DF148" : "pd-for-ios",
+    "013EC0084E093F2B16FFF43C2E31B91A2AD93C9D" : "BirdsNest",
+    "1A0B07D1631AC7F0F17FCE76695E42D64F01958F" : "pd-for-ios\/libpd",
+    "5C788FB45371F7A39B6FFB445D10D0EF209EBAE3" : "BirdsNestMetatoneMIDI",
+    "E92D265595D6FCFF23F817AF6192A4864182339E" : "BirdsNest\/birdsnestinstrument\/metaPdLibs"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BirdsNest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BirdsNest.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cpmpercussion\/BirdsNest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "013EC0084E093F2B16FFF43C2E31B91A2AD93C9D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/libpd\/libpd.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1A0B07D1631AC7F0F17FCE76695E42D64F01958F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cpmpercussion\/MetatoneMIDI",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C788FB45371F7A39B6FFB445D10D0EF209EBAE3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/git.code.sf.net\/p\/pure-data\/pure-data",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/libpd\/pd-for-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "778D08CA7C55C6E283FAC4140D174E64889DF148"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cpmpercussion\/metaPdLibs",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E92D265595D6FCFF23F817AF6192A4864182339E"
+    }
+  ]
+}
