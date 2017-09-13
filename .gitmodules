@@ -1,6 +1,6 @@
 [submodule "MetatoneMIDI"]
 	path = MetatoneMIDI
-	url = https://github.com/cpmpercussion/MetatoneMIDI
+	url = git@github.com:cpmpercussion/MetatoneMIDI.git
 [submodule "birdsnestinstrument/metaPdLibs"]
 	path = birdsnestinstrument/metaPdLibs
-	url = https://github.com/cpmpercussion/metaPdLibs
+	url = git@github.com:cpmpercussion/metaPdLibs.git
