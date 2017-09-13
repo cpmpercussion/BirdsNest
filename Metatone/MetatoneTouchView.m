@@ -83,7 +83,6 @@
 
 -(void) drawNoteCircleAt:(CGPoint) point {
     CALayer *layer = [self makeCircleLayerWithColour:self.loopColour];
-    //[self.loopCirclesLayer addSublayer:layer];
     [self.layer addSublayer:layer];
     [self.noteCirclePoints addObject:layer];
     
@@ -102,7 +101,6 @@
 
 -(CALayer *) makeCircleLayerWithColour:(UIColor *) colour {
     CALayer *layer = [[CALayer alloc] init];
-    
     layer.backgroundColor = colour.CGColor;
     layer.shadowOffset = CGSizeMake(0, 3);
     layer.shadowRadius = 5.0;
@@ -110,9 +108,7 @@
     layer.shadowOpacity = 0.8;
     layer.frame = CGRectMake(0, 0, 50, 50);
     layer.cornerRadius = 25.0;
-    //[self.layer addSublayer:layer];
     layer.hidden = YES;
-    
     return layer;
 }
 
