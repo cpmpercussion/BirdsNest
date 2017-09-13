@@ -91,11 +91,11 @@
 		56D9F2ED171E2EF100B28B75 /* LoopingNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9F2EC171E2EF100B28B75 /* LoopingNote.m */; };
 		56D9F2F6171E592600B28B75 /* MetatoneTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9F2F5171E592600B28B75 /* MetatoneTouchView.m */; };
 		56D9F2F8171E79A200B28B75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D9F2F7171E79A200B28B75 /* QuartzCore.framework */; };
-		993D93407E4FBF54E216F55A /* libPods-BirdsNest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1266DC3DE03C6F95BB02C1F5 /* libPods-BirdsNest.a */; };
+		BBD86E94A182CC24D10C1199 /* libPods-BirdsNest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7137FB8764FFC3211613FB6C /* libPods-BirdsNest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1266DC3DE03C6F95BB02C1F5 /* libPods-BirdsNest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BirdsNest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4493E014FA4F2C4C6CBD0BF0 /* Pods-BirdsNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirdsNest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest.release.xcconfig"; sourceTree = "<group>"; };
 		560A732E19F6317000281C5A /* dispatch.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dispatch.pd; sourceTree = "<group>"; };
 		560A732F19F6317000281C5A /* monopan.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monopan.pd; sourceTree = "<group>"; };
 		560A733019F6317000281C5A /* stereovol.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stereovol.pd; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 		56D9F2F4171E592600B28B75 /* MetatoneTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetatoneTouchView.h; sourceTree = "<group>"; };
 		56D9F2F5171E592600B28B75 /* MetatoneTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetatoneTouchView.m; sourceTree = "<group>"; };
 		56D9F2F7171E79A200B28B75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		B7597F8DECAC35E959C38971 /* Pods-BirdsNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirdsNest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest.debug.xcconfig"; sourceTree = "<group>"; };
-		E2F7D6D52D9D1AA2453756FB /* Pods-BirdsNest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirdsNest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest.release.xcconfig"; sourceTree = "<group>"; };
+		6762EB9AC85E577288EDFF37 /* Pods-BirdsNest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirdsNest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest.debug.xcconfig"; sourceTree = "<group>"; };
+		7137FB8764FFC3211613FB6C /* libPods-BirdsNest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BirdsNest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,22 +241,13 @@
 				56BD3FC01712FAAA004FBB65 /* AVFoundation.framework in Frameworks */,
 				565601DE1711957D00E819A3 /* UIKit.framework in Frameworks */,
 				565601E01711957D00E819A3 /* Foundation.framework in Frameworks */,
-				993D93407E4FBF54E216F55A /* libPods-BirdsNest.a in Frameworks */,
+				BBD86E94A182CC24D10C1199 /* libPods-BirdsNest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		012635ADD363C4102791E15F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B7597F8DECAC35E959C38971 /* Pods-BirdsNest.debug.xcconfig */,
-				E2F7D6D52D9D1AA2453756FB /* Pods-BirdsNest.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		560A732C19F6317000281C5A /* metaPdLibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,7 +391,7 @@
 				5656020A1711957D00E819A3 /* MetatoneTests */,
 				565601DC1711957D00E819A3 /* Frameworks */,
 				565601DB1711957D00E819A3 /* Products */,
-				012635ADD363C4102791E15F /* Pods */,
+				8A2AAFC4D93BA827C21EFEAB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -428,7 +419,7 @@
 				565601DF1711957D00E819A3 /* Foundation.framework */,
 				565601E11711957D00E819A3 /* CoreGraphics.framework */,
 				565602041711957D00E819A3 /* SenTestingKit.framework */,
-				1266DC3DE03C6F95BB02C1F5 /* libPods-BirdsNest.a */,
+				7137FB8764FFC3211613FB6C /* libPods-BirdsNest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -535,6 +526,15 @@
 			path = percsamples;
 			sourceTree = "<group>";
 		};
+		8A2AAFC4D93BA827C21EFEAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6762EB9AC85E577288EDFF37 /* Pods-BirdsNest.debug.xcconfig */,
+				4493E014FA4F2C4C6CBD0BF0 /* Pods-BirdsNest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -542,12 +542,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 565602151711957D00E819A3 /* Build configuration list for PBXNativeTarget "BirdsNest" */;
 			buildPhases = (
-				47835CC35D0AFB979ADA45E2 /* Check Pods Manifest.lock */,
+				A5779054E81E34F7651E3D48 /* [CP] Check Pods Manifest.lock */,
 				565601D61711957D00E819A3 /* Sources */,
 				565601D71711957D00E819A3 /* Frameworks */,
 				565601D81711957D00E819A3 /* Resources */,
-				C20D49CFF8414BAD569EB164 /* Embed Pods Frameworks */,
-				573063F637A337A5A8E9732A /* Copy Pods Resources */,
+				7AFDB046C1A838032FA31221 /* [CP] Embed Pods Frameworks */,
+				F18A2316935BF86871A0D387 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -649,49 +649,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		47835CC35D0AFB979ADA45E2 /* Check Pods Manifest.lock */ = {
+		7AFDB046C1A838032FA31221 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		573063F637A337A5A8E9732A /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C20D49CFF8414BAD569EB164 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5779054E81E34F7651E3D48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F18A2316935BF86871A0D387 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BirdsNest/Pods-BirdsNest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -830,7 +830,7 @@
 		};
 		565602161711957D00E819A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7597F8DECAC35E959C38971 /* Pods-BirdsNest.debug.xcconfig */;
+			baseConfigurationReference = 6762EB9AC85E577288EDFF37 /* Pods-BirdsNest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -852,7 +852,7 @@
 		};
 		565602171711957D00E819A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2F7D6D52D9D1AA2453756FB /* Pods-BirdsNest.release.xcconfig */;
+			baseConfigurationReference = 4493E014FA4F2C4C6CBD0BF0 /* Pods-BirdsNest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
