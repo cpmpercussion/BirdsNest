@@ -62,24 +62,42 @@
     return self;
 }
 
+
 -(void) drawTouchCircleAt:(CGPoint) point {
     CALayer *layer = [self makeCircleLayerWithColour:self.touchColour];
+    layer.position = point;
     [self.layer addSublayer:layer];
     [self.touchCirclePoints addObject:layer];
     
-    [CATransaction setAnimationDuration:0.0];
-    layer.position = point;
+    // reveal layer
+    [layer setOpacity:(float) 0.0];
     layer.hidden = NO;
+    
+    [CATransaction flush];
+    [CATransaction begin];
+    
     [CATransaction setCompletionBlock:^{
-        [CATransaction setCompletionBlock:^{
-            [layer removeFromSuperlayer];
-            [self.touchCirclePoints removeObject:layer];
-        }];
-        [CATransaction setAnimationDuration:2.0];
-        layer.hidden = YES;
+        [layer removeFromSuperlayer];
+        [self.touchCirclePoints removeObject:layer];
     }];
+    
+    // Reducing animation
+    CABasicAnimation *expand = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    expand.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    expand.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)];
+    expand.duration = 2.0;
+    
+    // Fadeout animation
+    CABasicAnimation *opaqueAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opaqueAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    opaqueAnimation.toValue = [NSNumber numberWithFloat:0.0];
+    opaqueAnimation.duration = 2.0;
+    
+    [layer addAnimation:expand forKey:@"expandAnimation"];
+    [layer addAnimation:opaqueAnimation forKey:@"opacity"];
+    
+    [CATransaction commit];
 }
-
 
 -(void) drawNoteCircleAt:(CGPoint) point {
     CALayer *layer = [self makeCircleLayerWithColour:self.loopColour];
