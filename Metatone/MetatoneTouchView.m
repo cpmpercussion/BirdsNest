@@ -82,10 +82,10 @@
     }];
     
     // Reducing animation
-    CABasicAnimation *expand = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    expand.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-    expand.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)];
-    expand.duration = 2.0;
+    CABasicAnimation *reduce = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    reduce.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    reduce.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)];
+    reduce.duration = 2.0;
     
     // Fadeout animation
     CABasicAnimation *opaqueAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -93,7 +93,7 @@
     opaqueAnimation.toValue = [NSNumber numberWithFloat:0.0];
     opaqueAnimation.duration = 2.0;
     
-    [layer addAnimation:expand forKey:@"expandAnimation"];
+    [layer addAnimation:reduce forKey:@"transform.scale"];
     [layer addAnimation:opaqueAnimation forKey:@"opacity"];
     
     [CATransaction commit];
@@ -135,7 +135,7 @@
     expand.fillMode = kCAFillModeForwards;
     opaqueAnimation.removedOnCompletion = NO;
     
-    [layer addAnimation:expand forKey:@"expandAnimation"];
+    [layer addAnimation:expand forKey:@"transform.scale"];
     [layer addAnimation:opaqueAnimation forKey:@"opacity"];
     [CATransaction commit];
 }
