@@ -859,7 +859,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metatone/BirdsNest-Prefix.pch";
 				INFOPLIST_FILE = "Metatone/BirdsNest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.charlesmartin.$(PRODUCT_NAME:rfc1034identifier)";
@@ -881,7 +881,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metatone/BirdsNest-Prefix.pch";
 				INFOPLIST_FILE = "Metatone/BirdsNest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "au.com.charlesmartin.$(PRODUCT_NAME:rfc1034identifier)";
