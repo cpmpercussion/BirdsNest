@@ -878,7 +878,7 @@
 				PRODUCT_NAME = BirdsNest;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "../pd-for-ios/libpd/**";
+				USER_HEADER_SEARCH_PATHS = "Pods/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -901,7 +901,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "../pd-for-ios/libpd/**";
+				USER_HEADER_SEARCH_PATHS = "Pods/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
