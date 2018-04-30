@@ -48,6 +48,10 @@
 #define HIGHEST_SWIPE_VELOCITY 4000.0;
 //#define HIGHEST_SWIPE_VELOCITY 2500.0;
 
+#define SAMPLE_RATE 44100
+#define SOUND_OUTPUT_CHANNELS 2
+#define TICKS_PER_BUFFER 4
+
 
 #define LOOPED_NOTE_LIMIT 200
 #define STANDARD_NOTE_RANGE 30
@@ -108,11 +112,8 @@ void arraysize_setup();
 {
     [super viewDidLoad];
     // Setup Pd Audio Controller
-    if([self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES] != PdAudioOK) {
-        NSLog(@"failed to initialise audioController");
-    } else {
-        NSLog(@"audioController initialised.");
-    }
+    [self.audioController configurePlaybackWithSampleRate:SAMPLE_RATE numberChannels:SOUND_OUTPUT_CHANNELS inputEnabled:NO mixingEnabled:YES];
+    [self.audioController configureTicksPerBuffer:TICKS_PER_BUFFER];
     
     // Setup Pd Patch
     arraysize_setup();
@@ -154,7 +155,6 @@ void arraysize_setup();
 -(void) nextScene {
     self.scene = (self.scene + 1) % 4;
     [self updateScene];
-    NSLog(@"New Scene: %d", self.scene);
 }
 
 -(void) updateBackgroundImage {
@@ -206,7 +206,7 @@ void arraysize_setup();
             [self updateScene];
             break;
     }
-    NSLog(@"Note Mode: %@", self.noteMode);
+//    NSLog(@"Note Mode: %@", self.noteMode);
     [self updateScale];
     [self updateBackgroundImage];
     [self updateNoteVariables];
@@ -277,7 +277,6 @@ void arraysize_setup();
     CGPoint touchPoint = [touch locationInView:self.view];
     // Velocity
     int velocity = floorf(15 + (110*((touch.majorRadius)/80)));
-    //    NSLog(@"Velocity: %d",velocity);
     if (velocity > 127) velocity = 127;
     if (velocity < 0) velocity = 0;
     
@@ -342,7 +341,6 @@ void arraysize_setup();
     CGFloat xVelocity = [sender velocityInView:self.view].x;
     CGFloat yVelocity = [sender velocityInView:self.view].y;
     CGFloat velocity = sqrt((xVelocity * xVelocity) + (yVelocity * yVelocity));
-//    velocity = velocity / HIGHEST_SWIPE_VELOCITY; // changed out 23/08/2014
     velocity = log(velocity)/10; // changed in 23/08/2014
     if (velocity < 0) velocity = 0.0;
     if (velocity > 1) velocity = 1.0;
@@ -383,9 +381,7 @@ void arraysize_setup();
     [PdBase sendBangToReceiver:self.noteMode];
     [PdBase sendBangToReceiver:self.swipeMode];
     [self updateNoteVariables];
-    
     //    self.tapMode = 1 + ((self.tapMode + 1) % 2);
-
     [self.networkManager sendMetatoneMessage:METATONE_RESET_MESSAGE withState:@"reset"];
     [self.networkManager sendMetatoneMessage:METATONE_TAPMODE_MESSAGE
                                    withState:[NSString stringWithFormat:@"%d",self.tapMode]];
@@ -403,10 +399,8 @@ void arraysize_setup();
         self.oscLogging = NO;
         [self.oscLoggingLabel setText:@"OSC Logging: Not Connected. 😓"];
         [self.oscLoggingLabel setHidden:NO];
-
-        NSLog(@"OSC Logging: Not Connected");
+//        NSLog(@"OSC Logging: Not Connected");
         self.resetChangesScene = YES;
-
     }
 }
 
@@ -440,22 +434,21 @@ void arraysize_setup();
 }
 
 -(void) didReceiveMetatoneMessageFrom:(NSString *)device withName:(NSString *)name andState:(NSString *)state {
-    //NSLog([NSString stringWithFormat:@"METATONE: Received app message from:%@ with state:%@",device,state]);
     if ([name isEqualToString:METATONE_SCALE_MESSAGE]) {
-        NSLog(@"METATONE: Scale Message received.");
+//        NSLog(@"METATONE: Scale Message received.");
         self.scaleMode = [state intValue];
         
     } else if ([name isEqualToString:METATONE_RESET_MESSAGE]) {
-        NSLog(@"METATONE: Reset Message received.");
+//        NSLog(@"METATONE: Reset Message received.");
         if (self.resetChangesScene) {
             if (arc4random_uniform(100)>75) [self nextScene];
         }
     } else if ([name isEqualToString:METATONE_TAPMODE_MESSAGE]) {
-        NSLog(@"METATONE: TapMode Message received.");
+//        NSLog(@"METATONE: TapMode Message received.");
         if (arc4random_uniform(100) > 80) self.tapMode = [state intValue];
     } else if ([name isEqualToString:METATONE_LOOP_MESSAGE]) {
         if (arc4random_uniform(100)>75) {
-            NSLog(@"METATONE: Loop Message Received and Actioned.");
+//            NSLog(@"METATONE: Loop Message Received and Actioned.");
             self.tapLooping = YES;
             [self.loopSwitch setOn:YES animated:YES];
         }
@@ -463,10 +456,11 @@ void arraysize_setup();
 }
 
 -(void)didReceiveGestureMessageFor:(NSString *)device withClass:(NSString *)class {
+    // not implementing this.
 }
 
 -(void)didReceiveEnsembleState:(NSString *)state withSpread:(NSNumber *)spread withRatio:(NSNumber *)ratio {
-    // Maybe do something with ensemble state?
+    // not implementing this.
 }
 
 -(void)didReceiveEnsembleEvent:(NSString *)event forDevice:(NSString *)device withMeasure:(NSNumber *)measure {
@@ -474,10 +468,7 @@ void arraysize_setup();
         [self nextScene];
         NSLog(@"Ensemble Event Received: Next Scene.");
         self.timeOfLastNewIdea = [NSDate date];
-    } else {
-        NSLog(@"Ensemble Event Received: Too soon after last event!");
     }
-    
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -488,27 +479,27 @@ void arraysize_setup();
 #pragma mark Pd Receivers
 
 - (void)receiveBangFromSource:(NSString *)source {
-    NSLog(@"PD BANG: %@",source);
+//    NSLog(@"PD BANG: %@",source);
 }
 
 - (void)receiveList:(NSArray *)list fromSource:(NSString *)source {
-    NSLog(@"PD LIST: %@",source);
+//    NSLog(@"PD LIST: %@",source);
 }
 
 - (void)receiveFloat:(float)received fromSource:(NSString *)source {
-    NSLog(@"PD FLOAT: %@ - %f",source,received);
+//    NSLog(@"PD FLOAT: %@ - %f",source,received);
 }
 
 - (void)receiveMessage:(NSString *)message withArguments:(NSArray *)arguments fromSource:(NSString *)source {
-    NSLog(@"PD string: %@",source);
+//    NSLog(@"PD string: %@",source);
 }
 
 - (void)receivePrint:(NSString *)message {
-    NSLog(@"PD print: %@",message);
+//    NSLog(@"PD print: %@",message);
 }
 
 - (void)receiveSymbol:(NSString *)symbol fromSource:(NSString *)source {
-    NSLog(@"PD symbol: %@",source);
+//    NSLog(@"PD symbol: %@",source);
 }
 
 @end
